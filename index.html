@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockups - Sistema Club Náutico Embalse</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+        
+        .description {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mockups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .mockup-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .mockup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .mockup-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .mockup-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .mockup-description {
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .mockup-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mockup-features li {
+            padding: 0.5rem 0;
+            color: #495057;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .mockup-features li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+            width: 100%;
+            justify-content: center;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
+        .btn-info {
+            background: #17a2b8;
+        }
+        
+        .btn-info:hover {
+            background: #138496;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .tech-stack {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 3rem;
+        }
+        
+        .tech-stack h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tech-item {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-name {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .tech-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 3rem;
+            opacity: 0.8;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .status-completed {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-in-progress {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-planned {
+            background: #cce5ff;
+            color: #004085;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-anchor"></i>
+            </div>
+            <h1 class="title">Sistema Club Náutico Embalse</h1>
+            <p class="subtitle">Mockups y Prototipos del Sistema de Gestión</p>
+        </div>
+
+        <div class="description">
+            <h3>🎯 Objetivo del Proyecto</h3>
+            <p>Modernizar el sistema de gestión del Club Náutico Embalse, reemplazando el sistema EVClub (Clarion/TopSpeed) por una solución web moderna con Angular y Python, incluyendo funcionalidades avanzadas de conciliación bancaria automática.</p>
+        </div>
+
+        <!-- Mockups principales -->
+        <div class="mockups-grid">
+            <a href="dashboard.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #3498db;">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <h3 class="mockup-title">Dashboard Principal</h3>
+                <p class="mockup-description">Panel de control con métricas en tiempo real, estadísticas de socios, ingresos y actividades recientes.</p>
+                <ul class="mockup-features">
+                    <li>Métricas financieras en tiempo real</li>
+                    <li>Actividad reciente de pagos</li>
+                    <li>Navegación rápida a módulos</li>
+                    <li>Gráficos interactivos</li>
+                </ul>
+                <div class="btn btn-info">
+                    <i class="fas fa-eye"></i> Ver Dashboard
+                </div>
+            </a>
+
+            <a href="socios.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #27ae60;">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="mockup-title">Gestión de Socios</h3>
+                <p class="mockup-description">Administración completa de socios con filtros avanzados, búsqueda y gestión de membresías.</p>
+                <ul class="mockup-features">
+                    <li>Listado completo de socios</li>
+                    <li>Filtros y búsqueda avanzada</li>
+                    <li>Formularios de alta/edición</li>
+                    <li>Estados de membresía</li>
+                </ul>
+                <div class="btn btn-success">
+                    <i class="fas fa-eye"></i> Ver Socios
+                </div>
+            </a>
+
+            <a href="embarcaciones.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #17a2b8;">
+                    <i class="fas fa-ship"></i>
+                </div>
+                <h3 class="mockup-title">Gestión de Embarcaciones</h3>
+                <p class="mockup-description">Registro detallado de embarcaciones con especificaciones técnicas, motores y documentación.</p>
+                <ul class="mockup-features">
+                    <li>Registro de embarcaciones</li>
+                    <li>Especificaciones técnicas</li>
+                    <li>Control de motores</li>
+                    <li>Estados de mantenimiento</li>
+                </ul>
+                <div class="btn btn-info">
+                    <i class="fas fa-eye"></i> Ver Embarcaciones
+                </div>
+            </a>
+
+            <a href="facturacion.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #f39c12;">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <h3 class="mockup-title">Sistema de Facturación</h3>
+                <p class="mockup-description">Gestión completa de cobros, cupones, pagos y reportes financieros con múltiples métodos de pago.</p>
+                <ul class="mockup-features">
+                    <li>Generación de cupones</li>
+                    <li>Registro de pagos</li>
+                    <li>Múltiples métodos de pago</li>
+                    <li>Reportes financieros</li>
+                </ul>
+                <div class="btn btn-warning">
+                    <i class="fas fa-eye"></i> Ver Facturación
+                </div>
+            </a>
+
+            <a href="conciliacion.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #e74c3c;">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3 class="mockup-title">Conciliación Bancaria</h3>
+                <p class="mockup-description">Sistema inteligente de conciliación automática con códigos de referencia y procesamiento de archivos bancarios.</p>
+                <ul class="mockup-features">
+                    <li>Conciliación automática por código</li>
+                    <li>Procesamiento de archivos CSV</li>
+                    <li>Conciliación manual inteligente</li>
+                    <li>Métricas de conciliación</li>
+                </ul>
+                <div class="btn btn-danger">
+                    <i class="fas fa-eye"></i> Ver Conciliación
+                </div>
+            </a>
+
+            <a href="instrucciones-pago.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #9b59b6;">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h3 class="mockup-title">Instrucciones de Pago</h3>
+                <p class="mockup-description">Página optimizada para socios con instrucciones claras de pago y códigos de referencia únicos.</p>
+                <ul class="mockup-features">
+                    <li>Instrucciones paso a paso</li>
+                    <li>Códigos de referencia únicos</li>
+                    <li>Datos bancarios completos</li>
+                    <li>Ejemplos de concepto correcto</li>
+                </ul>
+                <div class="btn" style="background: #9b59b6;">
+                    <i class="fas fa-eye"></i> Ver Instrucciones
+                </div>
+            </a>
+        </div>
+
+        <!-- Stack tecnológico -->
+        <div class="tech-stack">
+            <h3>🛠️ Stack Tecnológico Propuesto</h3>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon" style="color: #dd0031;">
+                        <i class="fab fa-angular"></i>
+                    </div>
+                    <div class="tech-name">Angular 17+</div>
+                    <div class="tech-description">Frontend Framework</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="color: #3776ab;">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tech-name">Python FastAPI</div>
+                    <div class="tech-description">Backend API</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="color: #336791;">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tech-name">PostgreSQL</div>
+                    <div class="tech-description">Base de Datos</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="color: #25d366;">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="tech-name">WhatsApp API</div>
+                    <div class="tech-description">Notificaciones</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="color: #ff6b35;">
+                        <i class="fas fa-file-csv"></i>
+                    </div>
+                    <div class="tech-name">CSV Processing</div>
+                    <div class="tech-description">Conciliación Bancaria</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" style="color: #f39c12;">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tech-name">IA Matching</div>
+                    <div class="tech-description">Conciliación Inteligente</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Funcionalidades clave -->
+        <div class="tech-stack">
+            <h3>✨ Funcionalidades Clave Implementadas</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div>
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">🎯 Conciliación Automática</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Códigos de referencia únicos (NCNE001)</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Procesamiento automático de archivos CSV</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Conciliación manual inteligente</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Métricas de conciliación en tiempo real</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">💳 Gestión Financiera</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Generación automática de cupones</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Múltiples métodos de pago</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Reportes financieros detallados</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Dashboard con métricas clave</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">👥 Gestión de Socios</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Registro completo de socios</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Control de membresías</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Filtros y búsqueda avanzada</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Estados de actividad</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #2c3e50; margin-bottom: 1rem;">⛵ Gestión de Embarcaciones</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Registro detallado de barcos</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Especificaciones técnicas</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Control de motores</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Estados de mantenimiento</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Club Náutico Embalse - Sistema de Gestión Moderno</p>
+            <p>Desarrollado con Angular + Python FastAPI</p>
+        </div>
+    </div>
+
+    <script>
+        // Efecto de animación al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.mockup-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

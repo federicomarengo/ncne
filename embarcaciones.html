@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Embarcaciones - Club Náutico Embalse</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .filters {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .filters-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .form-input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .boat-image {
+            width: 60px;
+            height: 40px;
+            background: #e9ecef;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+        }
+        
+        .boat-specs {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-row.three {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        
+        .boat-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .detail-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .detail-section h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .detail-value {
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-anchor"></i> Club Náutico Embalse
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="index.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+                <a href="dashboard.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="socios.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-users"></i> Socios
+                </a>
+                <a href="embarcaciones.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-ship"></i> Embarcaciones
+                </a>
+                <a href="facturacion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-receipt"></i> Facturación
+                </a>
+                <a href="conciliacion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-exchange-alt"></i> Conciliación
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Gestión de Embarcaciones</h1>
+            <button class="btn btn-success" onclick="openModal()">
+                <i class="fas fa-plus"></i> Nueva Embarcación
+            </button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <div class="filters-row">
+                <div class="form-group">
+                    <label class="form-label">Buscar</label>
+                    <input type="text" class="form-input" placeholder="Nombre, matrícula o socio...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo de Embarcación</label>
+                    <select class="form-input">
+                        <option value="">Todos los tipos</option>
+                        <option value="velero">Velero</option>
+                        <option value="lancha">Lancha</option>
+                        <option value="yate">Yate</option>
+                        <option value="catamaran">Catamarán</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Estado</label>
+                    <select class="form-input">
+                        <option value="">Todos los estados</option>
+                        <option value="active">Activa</option>
+                        <option value="inactive">Inactiva</option>
+                        <option value="maintenance">En Mantenimiento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Astillero</label>
+                    <select class="form-input">
+                        <option value="">Todos los astilleros</option>
+                        <option value="beneteau">Beneteau</option>
+                        <option value="bavaria">Bavaria</option>
+                        <option value="jeanneau">Jeanneau</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+                <button class="btn" style="background: #6c757d;">
+                    <i class="fas fa-undo"></i> Limpiar
+                </button>
+                <button class="btn" style="background: #17a2b8;">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabla de embarcaciones -->
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Nombre</th>
+                        <th>Socio</th>
+                        <th>Tipo</th>
+                        <th>Matrícula</th>
+                        <th>Eslora</th>
+                        <th>Motor</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="boat-image">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <strong>Aventura</strong>
+                                <div class="boat-specs">Bavaria 32</div>
+                            </div>
+                        </td>
+                        <td>Juan Carlos Pérez</td>
+                        <td>Velero</td>
+                        <td>ARG-12345</td>
+                        <td>9.75 m</td>
+                        <td>Yanmar 20HP</td>
+                        <td><span class="status-badge status-active">Activa</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalles(1)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="boat-image">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <strong>María Elena</strong>
+                                <div class="boat-specs">Beneteau Oceanis 35</div>
+                            </div>
+                        </td>
+                        <td>María Elena González</td>
+                        <td>Velero</td>
+                        <td>ARG-67890</td>
+                        <td>10.50 m</td>
+                        <td>Yanmar 30HP</td>
+                        <td><span class="status-badge status-active">Activa</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalles(2)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="boat-image">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <strong>Explorador</strong>
+                                <div class="boat-specs">Jeanneau Sun Odyssey 40</div>
+                            </div>
+                        </td>
+                        <td>Carlos Alberto López</td>
+                        <td>Velero</td>
+                        <td>ARG-11111</td>
+                        <td>12.20 m</td>
+                        <td>Yanmar 40HP</td>
+                        <td><span class="status-badge status-maintenance">Mantenimiento</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalles(3)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="boat-image">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <strong>Rápido</strong>
+                                <div class="boat-specs">Lancha 25ft</div>
+                            </div>
+                        </td>
+                        <td>Ana Beatriz Rodríguez</td>
+                        <td>Lancha</td>
+                        <td>ARG-22222</td>
+                        <td>7.62 m</td>
+                        <td>Mercury 200HP</td>
+                        <td><span class="status-badge status-active">Activa</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalles(4)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="boat-image">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <strong>Libertad</strong>
+                                <div class="boat-specs">Catamarán 38ft</div>
+                            </div>
+                        </td>
+                        <td>Roberto Daniel Silva</td>
+                        <td>Catamarán</td>
+                        <td>ARG-33333</td>
+                        <td>11.58 m</td>
+                        <td>2x Yamaru 20HP</td>
+                        <td><span class="status-badge status-inactive">Inactiva</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalles(5)">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para nueva embarcación -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Nueva Embarcación</h2>
+                <button class="close" onclick="closeModal()">&times;</button>
+            </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-input" placeholder="Nombre de la embarcación">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Socio</label>
+                        <select class="form-input">
+                            <option value="">Seleccionar socio</option>
+                            <option value="1">Juan Carlos Pérez</option>
+                            <option value="2">María Elena González</option>
+                            <option value="3">Carlos Alberto López</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Tipo</label>
+                        <select class="form-input">
+                            <option value="">Seleccionar tipo</option>
+                            <option value="velero">Velero</option>
+                            <option value="lancha">Lancha</option>
+                            <option value="yate">Yate</option>
+                            <option value="catamaran">Catamarán</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Matrícula</label>
+                        <input type="text" class="form-input" placeholder="ARG-12345">
+                    </div>
+                </div>
+                <div class="form-row three">
+                    <div class="form-group">
+                        <label class="form-label">Eslora (m)</label>
+                        <input type="number" class="form-input" placeholder="10.50" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Manga (m)</label>
+                        <input type="number" class="form-input" placeholder="3.50" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Calado (m)</label>
+                        <input type="number" class="form-input" placeholder="1.80" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Astillero</label>
+                        <input type="text" class="form-input" placeholder="Beneteau, Bavaria, etc.">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Modelo</label>
+                        <input type="text" class="form-input" placeholder="Oceanis 35">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Motor</label>
+                        <input type="text" class="form-input" placeholder="Yanmar 30HP">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Año de Construcción</label>
+                        <input type="number" class="form-input" placeholder="2020" min="1900" max="2025">
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label class="form-label">Observaciones</label>
+                        <textarea class="form-input" rows="3" placeholder="Observaciones adicionales..."></textarea>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn" style="background: #6c757d;" onclick="closeModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Guardar Embarcación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para ver detalles -->
+    <div id="detallesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalles de la Embarcación</h2>
+                <button class="close" onclick="closeDetallesModal()">&times;</button>
+            </div>
+            <div class="boat-details">
+                <div class="detail-section">
+                    <h4>Información General</h4>
+                    <div class="detail-item">
+                        <span class="detail-label">Nombre:</span>
+                        <span class="detail-value">Aventura</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Socio:</span>
+                        <span class="detail-value">Juan Carlos Pérez</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tipo:</span>
+                        <span class="detail-value">Velero</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Matrícula:</span>
+                        <span class="detail-value">ARG-12345</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Estado:</span>
+                        <span class="detail-value">Activa</span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>Especificaciones Técnicas</h4>
+                    <div class="detail-item">
+                        <span class="detail-label">Eslora:</span>
+                        <span class="detail-value">9.75 m</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Manga:</span>
+                        <span class="detail-value">3.25 m</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Calado:</span>
+                        <span class="detail-value">1.65 m</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Tonelaje:</span>
+                        <span class="detail-value">4.5 T</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Año:</span>
+                        <span class="detail-value">2018</span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>Motor y Propulsión</h4>
+                    <div class="detail-item">
+                        <span class="detail-label">Motor:</span>
+                        <span class="detail-value">Yanmar 20HP</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Año Motor:</span>
+                        <span class="detail-value">2018</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Combustible:</span>
+                        <span class="detail-value">Diesel</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Hélice:</span>
+                        <span class="detail-value">3 palas fijas</span>
+                    </div>
+                </div>
+                
+                <div class="detail-section">
+                    <h4>Astillero y Modelo</h4>
+                    <div class="detail-item">
+                        <span class="detail-label">Astillero:</span>
+                        <span class="detail-value">Bavaria</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Modelo:</span>
+                        <span class="detail-value">Bavaria 32</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Diseñador:</span>
+                        <span class="detail-value">Bavaria Yachts</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">REY:</span>
+                        <span class="detail-value">123456789</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        function verDetalles(id) {
+            document.getElementById('detallesModal').style.display = 'block';
+        }
+        
+        function closeDetallesModal() {
+            document.getElementById('detallesModal').style.display = 'none';
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            const detallesModal = document.getElementById('detallesModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+            if (event.target === detallesModal) {
+                closeDetallesModal();
+            }
+        }
+    </script>
+</body>
+</html>

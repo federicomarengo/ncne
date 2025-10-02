@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Club Náutico Embalse</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            color: #3498db;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .chart-container {
+            height: 200px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            margin-top: 1rem;
+        }
+        
+        .recent-activities {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .activity-icon.payment {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .activity-icon.new-member {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .activity-icon.boat {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .activity-content {
+            flex: 1;
+        }
+        
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .activity-time {
+            color: #6c757d;
+            font-size: 0.85rem;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .navigation {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+        
+        .nav-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .nav-icon {
+            font-size: 1.5rem;
+            margin-right: 0.75rem;
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-anchor"></i> Club Náutico Embalse
+            </div>
+            <div class="user-info">
+                <a href="index.html" style="color: white; text-decoration: none; margin-right: 1rem;">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+                <span>Bienvenido, Daniel Leunda</span>
+                <i class="fas fa-user-circle" style="font-size: 1.5rem;"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Navegación rápida -->
+        <div class="navigation">
+            <div class="nav-grid">
+                <a href="socios.html" class="nav-item">
+                    <i class="fas fa-users nav-icon"></i>
+                    <div>
+                        <div style="font-weight: 600;">Socios</div>
+                        <div style="font-size: 0.85rem; color: #6c757d;">Gestionar miembros</div>
+                    </div>
+                </a>
+                <a href="embarcaciones.html" class="nav-item">
+                    <i class="fas fa-ship nav-icon"></i>
+                    <div>
+                        <div style="font-weight: 600;">Embarcaciones</div>
+                        <div style="font-size: 0.85rem; color: #6c757d;">Registro de barcos</div>
+                    </div>
+                </a>
+                <a href="facturacion.html" class="nav-item">
+                    <i class="fas fa-receipt nav-icon"></i>
+                    <div>
+                        <div style="font-weight: 600;">Facturación</div>
+                        <div style="font-size: 0.85rem; color: #6c757d;">Cobros y pagos</div>
+                    </div>
+                </a>
+                <a href="conciliacion.html" class="nav-item">
+                    <i class="fas fa-exchange-alt nav-icon"></i>
+                    <div>
+                        <div style="font-weight: 600;">Conciliación</div>
+                        <div style="font-size: 0.85rem; color: #6c757d;">Conciliación bancaria</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Estadísticas principales -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Socios Activos</div>
+                    <i class="fas fa-users card-icon"></i>
+                </div>
+                <div class="stat-number">247</div>
+                <div class="stat-label">+12 este mes</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Ingresos del Mes</div>
+                    <i class="fas fa-dollar-sign card-icon"></i>
+                </div>
+                <div class="stat-number">$2,847,500</div>
+                <div class="stat-label">+8.5% vs mes anterior</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Embarcaciones</div>
+                    <i class="fas fa-ship card-icon"></i>
+                </div>
+                <div class="stat-number">189</div>
+                <div class="stat-label">+3 nuevas registradas</div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Pagos Pendientes</div>
+                    <i class="fas fa-exclamation-triangle card-icon"></i>
+                </div>
+                <div class="stat-number">23</div>
+                <div class="stat-label">Requieren atención</div>
+            </div>
+        </div>
+
+        <!-- Gráficos y actividades recientes -->
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Ingresos por Mes</div>
+                    <button class="btn">Ver Detalles</button>
+                </div>
+                <div class="chart-container">
+                    <i class="fas fa-chart-line" style="font-size: 3rem; color: #3498db;"></i>
+                    <span style="margin-left: 1rem;">Gráfico de ingresos mensuales</span>
+                </div>
+            </div>
+
+            <div class="recent-activities">
+                <div class="card-header">
+                    <div class="card-title">Actividad Reciente</div>
+                </div>
+                
+                <div class="activity-item">
+                    <div class="activity-icon payment">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Pago recibido - Juan Pérez</div>
+                        <div class="activity-time">Hace 2 horas - $45,000</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon new-member">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Nuevo socio registrado</div>
+                        <div class="activity-time">Hace 4 horas - María González</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon boat">
+                        <i class="fas fa-ship"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Embarcación registrada</div>
+                        <div class="activity-time">Ayer - Velero "Aventura"</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon payment">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Cupón vencido</div>
+                        <div class="activity-time">Hace 1 día - Carlos López</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Acciones rápidas -->
+        <div style="margin-top: 2rem; text-align: center;">
+            <a href="socios.html" class="btn btn-success" style="margin-right: 1rem; text-decoration: none;">
+                <i class="fas fa-plus"></i> Nuevo Socio
+            </a>
+            <a href="facturacion.html" class="btn" style="margin-right: 1rem; text-decoration: none;">
+                <i class="fas fa-receipt"></i> Generar Cupones
+            </a>
+            <a href="conciliacion.html" class="btn" style="margin-right: 1rem; text-decoration: none;">
+                <i class="fas fa-exchange-alt"></i> Conciliar Pagos
+            </a>
+            <a href="instrucciones-pago.html" class="btn" style="background: #9b59b6; text-decoration: none;">
+                <i class="fas fa-credit-card"></i> Instrucciones Pago
+            </a>
+        </div>
+    </div>
+</body>
+</html>

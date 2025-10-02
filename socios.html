@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Socios - Club Náutico Embalse</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .filters {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .filters-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .form-input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .pagination button:hover {
+            background: #f8f9fa;
+        }
+        
+        .pagination button.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-anchor"></i> Club Náutico Embalse
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="index.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+                <a href="dashboard.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="socios.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-users"></i> Socios
+                </a>
+                <a href="embarcaciones.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-ship"></i> Embarcaciones
+                </a>
+                <a href="facturacion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-receipt"></i> Facturación
+                </a>
+                <a href="conciliacion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-exchange-alt"></i> Conciliación
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Gestión de Socios</h1>
+            <button class="btn btn-success" onclick="openModal()">
+                <i class="fas fa-plus"></i> Nuevo Socio
+            </button>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <div class="filters-row">
+                <div class="form-group">
+                    <label class="form-label">Buscar</label>
+                    <input type="text" class="form-input" placeholder="Nombre, apellido o DNI...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Estado</label>
+                    <select class="form-input">
+                        <option value="">Todos los estados</option>
+                        <option value="active">Activo</option>
+                        <option value="inactive">Inactivo</option>
+                        <option value="pending">Pendiente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fecha de Ingreso</label>
+                    <input type="date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo de Membresía</label>
+                    <select class="form-input">
+                        <option value="">Todos los tipos</option>
+                        <option value="individual">Individual</option>
+                        <option value="familiar">Familiar</option>
+                        <option value="corporativa">Corporativa</option>
+                    </select>
+                </div>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+                <button class="btn" style="background: #6c757d;">
+                    <i class="fas fa-undo"></i> Limpiar
+                </button>
+                <button class="btn" style="background: #17a2b8;">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabla de socios -->
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre Completo</th>
+                        <th>DNI</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Estado</th>
+                        <th>Fecha Ingreso</th>
+                        <th>Membresía</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>001</td>
+                        <td>Juan Carlos Pérez</td>
+                        <td>20.123.456</td>
+                        <td>juan.perez@email.com</td>
+                        <td>+54 9 351 123-4567</td>
+                        <td><span class="status-badge status-active">Activo</span></td>
+                        <td>15/03/2020</td>
+                        <td>Familiar</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>María Elena González</td>
+                        <td>27.987.654</td>
+                        <td>maria.gonzalez@email.com</td>
+                        <td>+54 9 351 987-6543</td>
+                        <td><span class="status-badge status-active">Activo</span></td>
+                        <td>22/06/2019</td>
+                        <td>Individual</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>003</td>
+                        <td>Carlos Alberto López</td>
+                        <td>23.456.789</td>
+                        <td>carlos.lopez@email.com</td>
+                        <td>+54 9 351 456-7890</td>
+                        <td><span class="status-badge status-pending">Pendiente</span></td>
+                        <td>10/10/2025</td>
+                        <td>Corporativa</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>004</td>
+                        <td>Ana Beatriz Rodríguez</td>
+                        <td>25.789.123</td>
+                        <td>ana.rodriguez@email.com</td>
+                        <td>+54 9 351 789-1234</td>
+                        <td><span class="status-badge status-inactive">Inactivo</span></td>
+                        <td>05/02/2018</td>
+                        <td>Familiar</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>005</td>
+                        <td>Roberto Daniel Silva</td>
+                        <td>22.345.678</td>
+                        <td>roberto.silva@email.com</td>
+                        <td>+54 9 351 345-6789</td>
+                        <td><span class="status-badge status-active">Activo</span></td>
+                        <td>18/09/2021</td>
+                        <td>Individual</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Paginación -->
+        <div class="pagination">
+            <button><i class="fas fa-chevron-left"></i></button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>15</button>
+            <button><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <!-- Modal para nuevo socio -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Nuevo Socio</h2>
+                <button class="close" onclick="closeModal()">&times;</button>
+            </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-input" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Apellido</label>
+                        <input type="text" class="form-input" placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">DNI</label>
+                        <input type="text" class="form-input" placeholder="Número de DNI">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-input">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="email@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" class="form-input" placeholder="+54 9 351 123-4567">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" class="form-input" placeholder="Dirección completa">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Membresía</label>
+                        <select class="form-input">
+                            <option value="">Seleccionar tipo</option>
+                            <option value="individual">Individual</option>
+                            <option value="familiar">Familiar</option>
+                            <option value="corporativa">Corporativa</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label class="form-label">Observaciones</label>
+                        <textarea class="form-input" rows="3" placeholder="Observaciones adicionales..."></textarea>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn" style="background: #6c757d;" onclick="closeModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Guardar Socio
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conciliación Bancaria - Club Náutico Embalse</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+        
+        .btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+        }
+        
+        .btn-warning:hover {
+            background: #e67e22;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-info {
+            background: #17a2b8;
+        }
+        
+        .btn-info:hover {
+            background: #138496;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .metric-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .metric-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .metric-card .label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .tabs {
+            display: flex;
+            background: white;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 0;
+        }
+        
+        .tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
+            border-bottom-color: #3498db;
+            background: #f8f9fa;
+        }
+        
+        .tab:hover {
+            background: #f8f9fa;
+        }
+        
+        .tab-content {
+            background: white;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .upload-section {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .upload-section.dragover {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .form-input {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .status-conciliado {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-pendiente {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .status-sin-socio {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+        
+        .movimiento-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #dee2e6;
+        }
+        
+        .movimiento-item.conciliado {
+            border-left-color: #27ae60;
+        }
+        
+        .movimiento-item.pendiente {
+            border-left-color: #f39c12;
+        }
+        
+        .movimiento-item.error {
+            border-left-color: #e74c3c;
+        }
+        
+        .movimiento-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .movimiento-info {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .movimiento-fecha {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .movimiento-monto {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        .movimiento-concepto {
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .sugerencias {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .sugerencias h5 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sugerencia-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sugerencia-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .sugerencia-socio {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .sugerencia-monto {
+            color: #6c757d;
+        }
+        
+        .sugerencia-acciones {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .acciones-manuales {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .input-socio {
+            width: 120px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .instrucciones-pago {
+            background: #e3f2fd;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .instrucciones-pago h3 {
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+        
+        .datos-bancarios {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dato-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .dato-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dato-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .dato-value {
+            font-family: monospace;
+            background: #f8f9fa;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: #495057;
+        }
+        
+        .concepto-importante {
+            background: #fff3cd !important;
+            color: #856404 !important;
+            font-weight: bold;
+            padding: 0.5rem !important;
+        }
+        
+        .ejemplos {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .ejemplos h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .ejemplos ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .ejemplos li {
+            padding: 0.25rem 0;
+            font-family: monospace;
+            color: #495057;
+        }
+        
+        .ejemplos li:before {
+            content: "✅ ";
+            color: #27ae60;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        
+        .close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6c757d;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.3s ease;
+        }
+        
+        .log-container {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-anchor"></i> Club Náutico Embalse
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="index.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-home"></i> Inicio
+                </a>
+                <a href="dashboard.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+                <a href="socios.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-users"></i> Socios
+                </a>
+                <a href="embarcaciones.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-ship"></i> Embarcaciones
+                </a>
+                <a href="facturacion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-receipt"></i> Facturación
+                </a>
+                <a href="conciliacion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-exchange-alt"></i> Conciliación
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">Conciliación Bancaria</h1>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-info" onclick="mostrarInstrucciones()">
+                    <i class="fas fa-info-circle"></i> Instrucciones de Pago
+                </button>
+                <button class="btn btn-success" onclick="procesarArchivo()">
+                    <i class="fas fa-file-upload"></i> Procesar Archivo
+                </button>
+            </div>
+        </div>
+
+        <!-- Métricas de conciliación -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="icon" style="color: #27ae60;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="number" style="color: #27ae60;">47</div>
+                <div class="label">Conciliados Automáticamente</div>
+            </div>
+            <div class="metric-card">
+                <div class="icon" style="color: #f39c12;">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="number" style="color: #f39c12;">8</div>
+                <div class="label">Pendientes de Revisión</div>
+            </div>
+            <div class="metric-card">
+                <div class="icon" style="color: #e74c3c;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="number" style="color: #e74c3c;">2</div>
+                <div class="label">Con Errores</div>
+            </div>
+            <div class="metric-card">
+                <div class="icon" style="color: #3498db;">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="number" style="color: #3498db;">85.4%</div>
+                <div class="label">% Conciliación Automática</div>
+            </div>
+        </div>
+
+        <!-- Instrucciones de pago -->
+        <div id="instrucciones" class="instrucciones-pago" style="display: none;">
+            <h3>📋 Instrucciones de Pago para Socios</h3>
+            
+            <div class="datos-bancarios">
+                <h4>Datos para Transferencia:</h4>
+                <div class="dato-item">
+                    <span class="dato-label">Banco:</span>
+                    <span class="dato-value">Santander Río</span>
+                </div>
+                <div class="dato-item">
+                    <span class="dato-label">CBU:</span>
+                    <span class="dato-value">0720453520000000027854</span>
+                    <button class="btn btn-sm" onclick="copiarCBU()">Copiar</button>
+                </div>
+                <div class="dato-item">
+                    <span class="dato-label">Concepto:</span>
+                    <span class="dato-value concepto-importante">NCNE001</span>
+                    <button class="btn btn-sm" onclick="copiarConcepto()">Copiar</button>
+                </div>
+            </div>
+            
+            <div class="ejemplos">
+                <h4>Ejemplos de Concepto Correcto:</h4>
+                <ul>
+                    <li>NCNE001</li>
+                    <li>NCNE 001</li>
+                    <li>NCNE-001</li>
+                    <li>Cuota NCNE001</li>
+                    <li>Pago NCNE001</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('procesar')">
+                <i class="fas fa-file-upload"></i> Procesar Archivo
+            </div>
+            <div class="tab" onclick="showTab('pendientes')">
+                <i class="fas fa-clock"></i> Pendientes (8)
+            </div>
+            <div class="tab" onclick="showTab('conciliados')">
+                <i class="fas fa-check-circle"></i> Conciliados (47)
+            </div>
+            <div class="tab" onclick="showTab('errores')">
+                <i class="fas fa-exclamation-triangle"></i> Errores (2)
+            </div>
+        </div>
+
+        <!-- Contenido de Procesar Archivo -->
+        <div id="procesar" class="tab-content">
+            <div class="upload-section" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+                <div class="upload-icon">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Subir Archivo de Movimientos Bancarios</h3>
+                <p>Arrastra y suelta el archivo CSV del banco aquí, o haz clic para seleccionar</p>
+                <input type="file" id="fileInput" accept=".csv,.xlsx" style="display: none;" onchange="handleFileSelect(event)">
+                <button class="btn btn-success" onclick="document.getElementById('fileInput').click()">
+                    <i class="fas fa-folder-open"></i> Seleccionar Archivo
+                </button>
+            </div>
+
+            <div id="procesando" style="display: none;">
+                <h3>Procesando archivo...</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+                <div class="log-container" id="logContainer">
+                    Iniciando procesamiento...<br>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido de Pendientes -->
+        <div id="pendientes" class="tab-content" style="display: none;">
+            <div class="filters">
+                <div class="form-group">
+                    <label class="form-label">Buscar</label>
+                    <input type="text" class="form-input" placeholder="Concepto, monto...">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fecha Desde</label>
+                    <input type="date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fecha Hasta</label>
+                    <input type="date" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Monto</label>
+                    <input type="number" class="form-input" placeholder="Monto exacto">
+                </div>
+            </div>
+
+            <div class="movimientos-pendientes">
+                <h4>Movimientos Pendientes de Conciliación (8)</h4>
+                
+                <div class="movimiento-item pendiente">
+                    <div class="movimiento-header">
+                        <div class="movimiento-info">
+                            <span class="movimiento-fecha">10/10/2025</span>
+                            <span class="movimiento-monto">$45,000</span>
+                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - JUAN PEREZ</span>
+                        </div>
+                        <span class="status-badge status-pendiente">Pendiente</span>
+                    </div>
+                    
+                    <div class="sugerencias">
+                        <h5>Posibles coincidencias:</h5>
+                        <div class="sugerencia-item">
+                            <div class="sugerencia-info">
+                                <span class="sugerencia-socio">Juan Carlos Pérez</span>
+                                <span class="sugerencia-monto">$45,000 - Cupón 00001290</span>
+                            </div>
+                            <div class="sugerencia-acciones">
+                                <button class="btn btn-sm btn-success" onclick="conciliar(1, 1)">Conciliar</button>
+                                <button class="btn btn-sm btn-info" onclick="verDetalles(1)">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="acciones-manuales">
+                        <input type="number" class="input-socio" placeholder="N° Socio" id="socio-1">
+                        <button class="btn btn-sm btn-warning" onclick="conciliarManual(1)">Conciliar Manual</button>
+                        <button class="btn btn-sm" style="background: #6c757d;" onclick="marcarRevisado(1)">Marcar Revisado</button>
+                    </div>
+                </div>
+
+                <div class="movimiento-item pendiente">
+                    <div class="movimiento-header">
+                        <div class="movimiento-info">
+                            <span class="movimiento-fecha">11/10/2025</span>
+                            <span class="movimiento-monto">$45,000</span>
+                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - MARIA GONZALEZ</span>
+                        </div>
+                        <span class="status-badge status-pendiente">Pendiente</span>
+                    </div>
+                    
+                    <div class="sugerencias">
+                        <h5>Posibles coincidencias:</h5>
+                        <div class="sugerencia-item">
+                            <div class="sugerencia-info">
+                                <span class="sugerencia-socio">María Elena González</span>
+                                <span class="sugerencia-monto">$45,000 - Cupón 00001291</span>
+                            </div>
+                            <div class="sugerencia-acciones">
+                                <button class="btn btn-sm btn-success" onclick="conciliar(2, 2)">Conciliar</button>
+                                <button class="btn btn-sm btn-info" onclick="verDetalles(2)">Ver</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="acciones-manuales">
+                        <input type="number" class="input-socio" placeholder="N° Socio" id="socio-2">
+                        <button class="btn btn-sm btn-warning" onclick="conciliarManual(2)">Conciliar Manual</button>
+                        <button class="btn btn-sm" style="background: #6c757d;" onclick="marcarRevisado(2)">Marcar Revisado</button>
+                    </div>
+                </div>
+
+                <div class="movimiento-item error">
+                    <div class="movimiento-header">
+                        <div class="movimiento-info">
+                            <span class="movimiento-fecha">12/10/2025</span>
+                            <span class="movimiento-monto">$90,000</span>
+                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - CARLOS LOPEZ</span>
+                        </div>
+                        <span class="status-badge status-error">Error</span>
+                    </div>
+                    
+                    <div class="sugerencias">
+                        <h5>⚠️ Monto no coincide con cupones pendientes</h5>
+                        <p>El monto ($90,000) no coincide con ningún cupón pendiente. Posibles causas:</p>
+                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                            <li>Pago de múltiples cuotas</li>
+                            <li>Pago con intereses</li>
+                            <li>Error en el monto</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="acciones-manuales">
+                        <input type="number" class="input-socio" placeholder="N° Socio" id="socio-3">
+                        <button class="btn btn-sm btn-warning" onclick="conciliarManual(3)">Conciliar Manual</button>
+                        <button class="btn btn-sm" style="background: #6c757d;" onclick="marcarRevisado(3)">Marcar Revisado</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido de Conciliados -->
+        <div id="conciliados" class="tab-content" style="display: none;">
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Concepto</th>
+                            <th>Socio</th>
+                            <th>Cupón</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10/10/2025</td>
+                            <td class="movimiento-monto">$45,000</td>
+                            <td>TRANSFERENCIA RECIBIDA - NCNE001</td>
+                            <td>Juan Carlos Pérez</td>
+                            <td>00001289</td>
+                            <td><span class="status-badge status-conciliado">Conciliado</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>09/10/2025</td>
+                            <td class="movimiento-monto">$45,000</td>
+                            <td>TRANSFERENCIA RECIBIDA - NCNE002</td>
+                            <td>María Elena González</td>
+                            <td>00001290</td>
+                            <td><span class="status-badge status-conciliado">Conciliado</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-info">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Contenido de Errores -->
+        <div id="errores" class="tab-content" style="display: none;">
+            <div class="movimientos-pendientes">
+                <h4>Movimientos con Errores (2)</h4>
+                
+                <div class="movimiento-item error">
+                    <div class="movimiento-header">
+                        <div class="movimiento-info">
+                            <span class="movimiento-fecha">12/10/2025</span>
+                            <span class="movimiento-monto">$90,000</span>
+                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - CARLOS LOPEZ</span>
+                        </div>
+                        <span class="status-badge status-error">Error</span>
+                    </div>
+                    
+                    <div class="sugerencias">
+                        <h5>⚠️ Error: Monto no coincide</h5>
+                        <p>El monto ($90,000) no coincide con ningún cupón pendiente.</p>
+                    </div>
+                </div>
+
+                <div class="movimiento-item error">
+                    <div class="movimiento-header">
+                        <div class="movimiento-info">
+                            <span class="movimiento-fecha">13/10/2025</span>
+                            <span class="movimiento-monto">$22,500</span>
+                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - ANA RODRIGUEZ</span>
+                        </div>
+                        <span class="status-badge status-error">Error</span>
+                    </div>
+                    
+                    <div class="sugerencias">
+                        <h5>⚠️ Error: Monto parcial</h5>
+                        <p>El monto ($22,500) es la mitad del cupón pendiente ($45,000).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Ocultar todos los contenidos
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.style.display = 'none');
+            
+            // Remover clase active de todos los tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Mostrar el contenido seleccionado
+            document.getElementById(tabName).style.display = 'block';
+            
+            // Agregar clase active al tab seleccionado
+            event.target.classList.add('active');
+        }
+        
+        function mostrarInstrucciones() {
+            const instrucciones = document.getElementById('instrucciones');
+            instrucciones.style.display = instrucciones.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function copiarCBU() {
+            navigator.clipboard.writeText('0720453520000000027854');
+            alert('CBU copiado al portapapeles');
+        }
+        
+        function copiarConcepto() {
+            navigator.clipboard.writeText('NCNE001');
+            alert('Concepto copiado al portapapeles');
+        }
+        
+        function dragOverHandler(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('dragover');
+        }
+        
+        function dropHandler(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('dragover');
+            const files = ev.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+        
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+        
+        function handleFile(file) {
+            console.log('Archivo seleccionado:', file.name);
+            procesarArchivo();
+        }
+        
+        function procesarArchivo() {
+            const procesando = document.getElementById('procesando');
+            const logContainer = document.getElementById('logContainer');
+            const progressFill = document.getElementById('progressFill');
+            
+            procesando.style.display = 'block';
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress > 100) progress = 100;
+                
+                progressFill.style.width = progress + '%';
+                
+                if (progress >= 25) logContainer.innerHTML += 'Leyendo archivo CSV...<br>';
+                if (progress >= 50) logContainer.innerHTML += 'Procesando movimientos...<br>';
+                if (progress >= 75) logContainer.innerHTML += 'Buscando coincidencias...<br>';
+                if (progress >= 100) {
+                    logContainer.innerHTML += '✅ Procesamiento completado!<br>';
+                    logContainer.innerHTML += '📊 Resultados:<br>';
+                    logContainer.innerHTML += '  - Conciliados automáticamente: 47<br>';
+                    logContainer.innerHTML += '  - Pendientes de revisión: 8<br>';
+                    logContainer.innerHTML += '  - Con errores: 2<br>';
+                    clearInterval(interval);
+                    
+                    setTimeout(() => {
+                        procesando.style.display = 'none';
+                        showTab('pendientes');
+                        // Actualizar tabs con nuevos números
+                        document.querySelector('.tab:nth-child(2)').innerHTML = '<i class="fas fa-clock"></i> Pendientes (8)';
+                        document.querySelector('.tab:nth-child(3)').innerHTML = '<i class="fas fa-check-circle"></i> Conciliados (47)';
+                        document.querySelector('.tab:nth-child(4)').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Errores (2)';
+                    }, 2000);
+                }
+            }, 200);
+        }
+        
+        function conciliar(movimientoId, cuponId) {
+            alert(`Conciliando movimiento ${movimientoId} con cupón ${cuponId}`);
+            // Aquí iría la lógica de conciliación
+        }
+        
+        function conciliarManual(movimientoId) {
+            const socioId = document.getElementById(`socio-${movimientoId}`).value;
+            if (socioId) {
+                alert(`Conciliando movimiento ${movimientoId} con socio ${socioId}`);
+                // Aquí iría la lógica de conciliación manual
+            } else {
+                alert('Por favor ingresa el número de socio');
+            }
+        }
+        
+        function marcarRevisado(movimientoId) {
+            alert(`Marcando movimiento ${movimientoId} como revisado`);
+            // Aquí iría la lógica para marcar como revisado
+        }
+        
+        function verDetalles(movimientoId) {
+            alert(`Mostrando detalles del movimiento ${movimientoId}`);
+            // Aquí iría la lógica para mostrar detalles
+        }
+    </script>
+</body>
+</html>
