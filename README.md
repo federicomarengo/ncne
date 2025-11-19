@@ -11,7 +11,7 @@ Sistema moderno de gestión para clubes náuticos desarrollado con Angular y Pyt
 - **Gestión de Embarcaciones**: Registro detallado de barcos
 - **Sistema de Facturación**: Cobros, cupones y pagos
 - **Conciliación Bancaria**: Procesamiento automático de archivos CSV
-- **Instrucciones de Pago**: Página optimizada para socios
+- **Portal de Autogestión**: Portal para que los socios consulten su cuenta
 
 ### 🎯 Características Únicas
 - **Conciliación Automática**: 95% de eficiencia con códigos de referencia únicos
@@ -46,7 +46,7 @@ Sistema moderno de gestión para clubes náuticos desarrollado con Angular y Pyt
 4. **embarcaciones.html** - Gestión de embarcaciones
 5. **facturacion.html** - Sistema de facturación
 6. **conciliacion.html** - Conciliación bancaria
-7. **instrucciones-pago.html** - Instrucciones para socios
+7. **mi-cuenta.html** - Portal de autogestión para socios
 
 ## 🎯 Objetivo del Proyecto
 

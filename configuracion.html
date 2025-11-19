@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración del Sistema - Club Náutico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn {
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .config-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            background: #f8f9fa;
+            padding: 2rem 0;
+            border-right: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            align-self: start;
+        }
+
+        .sidebar-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #495057;
+        }
+
+        .sidebar-item:hover {
+            background: #e9ecef;
+            color: #667eea;
+        }
+
+        .sidebar-item.active {
+            background: white;
+            color: #667eea;
+            border-left-color: #667eea;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 2rem;
+            min-height: 500px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .form-label.required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
+        }
+
+        .subsection-title {
+            font-size: 1.1rem;
+            color: #495057;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-anchor"></i>
+                Club Náutico Embalse
+            </div>
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Volver al Dashboard
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">
+            <i class="fas fa-cog"></i> Configuración del Sistema
+        </h1>
+
+        <div class="config-layout">
+            <div class="sidebar">
+                <div class="sidebar-item active" onclick="showTab('club-info')">
+                    <i class="fas fa-building"></i>
+                    Información del Club
+                </div>
+                <div class="sidebar-item" onclick="showTab('banking')">
+                    <i class="fas fa-university"></i>
+                    Datos Bancarios
+                </div>
+                <div class="sidebar-item" onclick="showTab('costs')">
+                    <i class="fas fa-dollar-sign"></i>
+                    Costos y Tarifas
+                </div>
+                <div class="sidebar-item" onclick="showTab('billing')">
+                    <i class="fas fa-file-invoice"></i>
+                    Facturación
+                </div>
+            </div>
+
+            <div class="content">
+                <div id="alert" class="alert"></div>
+
+                <!-- Información del Club -->
+                <div id="club-info" class="section active">
+                    <h2 class="section-title">Información del Club</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">Nombre del Club</label>
+                        <input type="text" id="clubNombre" class="form-input" placeholder="Club Náutico Embalse">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" id="clubDireccion" class="form-input" placeholder="Av. Costanera s/n, Embalse, Córdoba">
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label class="form-label">Teléfono Principal</label>
+                            <input type="text" id="clubTelefono1" class="form-input" placeholder="03571-485000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Teléfono Secundario</label>
+                            <input type="text" id="clubTelefono2" class="form-input" placeholder="03571-485001">
+                        </div>
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label class="form-label required">Email Principal</label>
+                            <input type="email" id="clubEmail1" class="form-input" placeholder="info@clubnauticoembalse.com.ar">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Secundario</label>
+                            <input type="email" id="clubEmail2" class="form-input" placeholder="tesoreria@clubnauticoembalse.com.ar">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Sitio Web</label>
+                        <input type="url" id="clubWeb" class="form-input" placeholder="www.clubnauticoembalse.com.ar">
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="saveConfig()">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadConfig(); updateForm();">
+                            <i class="fas fa-undo"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Datos Bancarios -->
+                <div id="banking" class="section">
+                    <h2 class="section-title">Datos Bancarios</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label required">CBU</label>
+                        <input type="text" id="bancarioCbu" class="form-input" placeholder="0720453520000000027854" maxlength="22">
+                        <div class="form-help">Clave Bancaria Uniforme (22 dígitos)</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Alias CBU</label>
+                        <input type="text" id="bancarioAlias" class="form-input" placeholder="CLUB.NAUTICO.EMBALSE">
+                        <div class="form-help">Alias opcional para facilitar las transferencias</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Banco</label>
+                        <input type="text" id="bancarioBanco" class="form-input" placeholder="Banco de Córdoba">
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label class="form-label required">Titular de la Cuenta</label>
+                            <input type="text" id="bancarioTitular" class="form-input" placeholder="Club Náutico Embalse">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Cuenta</label>
+                            <select id="bancarioTipoCuenta" class="form-select">
+                                <option value="CA">Caja de Ahorro</option>
+                                <option value="CC">Cuenta Corriente</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="saveConfig()">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadConfig(); updateForm();">
+                            <i class="fas fa-undo"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Costos y Tarifas -->
+                <div id="costs" class="section">
+                    <h2 class="section-title">Costos y Tarifas</h2>
+                    
+                    <h3 class="subsection-title">Visitas</h3>
+                    <div class="form-group">
+                        <label class="form-label required">Costo por Visita</label>
+                        <input type="number" id="costosVisita" class="form-input" placeholder="5000" min="0">
+                        <div class="form-help">Monto que se cobra por cada persona visitante</div>
+                    </div>
+
+                    <h3 class="subsection-title">Cuotas Sociales</h3>
+                    <div class="form-group">
+                        <label class="form-label">Cuota Mensual Base</label>
+                        <input type="number" id="costosCuotaMensual" class="form-input" placeholder="45000" min="0">
+                        <div class="form-help">Monto base de la cuota social mensual</div>
+                    </div>
+
+                    <h3 class="subsection-title">Amarras (por tamaño de embarcación)</h3>
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label class="form-label">Amarra Chica</label>
+                            <input type="number" id="costosAmarraChica" class="form-input" placeholder="15000" min="0">
+                            <div class="form-help">Hasta 6 metros</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Amarra Mediana</label>
+                            <input type="number" id="costosAmarraMediana" class="form-input" placeholder="25000" min="0">
+                            <div class="form-help">De 6 a 10 metros</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Amarra Grande</label>
+                        <input type="number" id="costosAmarraGrande" class="form-input" placeholder="35000" min="0">
+                        <div class="form-help">Más de 10 metros</div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="saveConfig()">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadConfig(); updateForm();">
+                            <i class="fas fa-undo"></i> Cancelar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Facturación -->
+                <div id="billing" class="section">
+                    <h2 class="section-title">Facturación</h2>
+                    
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label class="form-label required">Día de Vencimiento</label>
+                            <input type="number" id="facturacionDiaVencimiento" class="form-input" placeholder="15" min="1" max="31">
+                            <div class="form-help">Día del mes en que vencen los cupones</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Días de Gracia</label>
+                            <input type="number" id="facturacionDiasGracia" class="form-input" placeholder="5" min="0" max="30">
+                            <div class="form-help">Días antes de aplicar intereses por mora</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Tasa de Interés por Mora (%)</label>
+                        <input type="number" id="facturacionTasaInteres" class="form-input" placeholder="3" min="0" max="100" step="0.1">
+                        <div class="form-help">Porcentaje mensual de interés sobre saldo vencido</div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="facturacionGeneracionAuto" checked>
+                            <label for="facturacionGeneracionAuto">Generar cupones automáticamente cada mes</label>
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="saveConfig()">
+                            <i class="fas fa-save"></i> Guardar Cambios
+                        </button>
+                        <button class="btn btn-secondary" onclick="loadConfig(); updateForm();">
+                            <i class="fas fa-undo"></i> Cancelar
+                        </button>
+                        <button class="btn btn-danger" onclick="resetConfig()">
+                            <i class="fas fa-trash-restore"></i> Restaurar Predeterminados
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuración predeterminada
+        let CONFIG = {
+            club: {
+                nombre: "Club Náutico Embalse",
+                direccion: "Av. Costanera s/n, Embalse, Córdoba",
+                telefono1: "03571-485000",
+                telefono2: "",
+                email1: "info@clubnauticoembalse.com.ar",
+                email2: "tesoreria@clubnauticoembalse.com.ar",
+                web: "www.clubnauticoembalse.com.ar"
+            },
+            bancario: {
+                cbu: "0720453520000000027854",
+                alias: "CLUB.NAUTICO.EMBALSE",
+                banco: "Banco de Córdoba",
+                titular: "Club Náutico Embalse",
+                tipoCuenta: "CC"
+            },
+            costos: {
+                visita: 5000,
+                cuotaMensual: 45000,
+                amarraChica: 15000,
+                amarraMediana: 25000,
+                amarraGrande: 35000
+            },
+            facturacion: {
+                diaVencimiento: 15,
+                diasGracia: 5,
+                tasaInteres: 3,
+                generacionAuto: true
+            }
+        };
+
+        // Guardar configuración
+        function saveConfig() {
+            // Recoger valores del formulario
+            CONFIG.club.nombre = document.getElementById('clubNombre').value;
+            CONFIG.club.direccion = document.getElementById('clubDireccion').value;
+            CONFIG.club.telefono1 = document.getElementById('clubTelefono1').value;
+            CONFIG.club.telefono2 = document.getElementById('clubTelefono2').value;
+            CONFIG.club.email1 = document.getElementById('clubEmail1').value;
+            CONFIG.club.email2 = document.getElementById('clubEmail2').value;
+            CONFIG.club.web = document.getElementById('clubWeb').value;
+
+            CONFIG.bancario.cbu = document.getElementById('bancarioCbu').value;
+            CONFIG.bancario.alias = document.getElementById('bancarioAlias').value;
+            CONFIG.bancario.banco = document.getElementById('bancarioBanco').value;
+            CONFIG.bancario.titular = document.getElementById('bancarioTitular').value;
+            CONFIG.bancario.tipoCuenta = document.getElementById('bancarioTipoCuenta').value;
+
+            CONFIG.costos.visita = parseInt(document.getElementById('costosVisita').value) || 5000;
+            CONFIG.costos.cuotaMensual = parseInt(document.getElementById('costosCuotaMensual').value) || 45000;
+            CONFIG.costos.amarraChica = parseInt(document.getElementById('costosAmarraChica').value) || 15000;
+            CONFIG.costos.amarraMediana = parseInt(document.getElementById('costosAmarraMediana').value) || 25000;
+            CONFIG.costos.amarraGrande = parseInt(document.getElementById('costosAmarraGrande').value) || 35000;
+
+            CONFIG.facturacion.diaVencimiento = parseInt(document.getElementById('facturacionDiaVencimiento').value) || 15;
+            CONFIG.facturacion.diasGracia = parseInt(document.getElementById('facturacionDiasGracia').value) || 5;
+            CONFIG.facturacion.tasaInteres = parseFloat(document.getElementById('facturacionTasaInteres').value) || 3;
+            CONFIG.facturacion.generacionAuto = document.getElementById('facturacionGeneracionAuto').checked;
+
+            // Validar campos obligatorios
+            if (!CONFIG.club.nombre || !CONFIG.club.email1 || !CONFIG.bancario.cbu || !CONFIG.bancario.titular) {
+                showAlert('Por favor complete todos los campos obligatorios (*)', 'error');
+                return;
+            }
+
+            // Validar formato CBU
+            if (CONFIG.bancario.cbu.length !== 22) {
+                showAlert('El CBU debe tener exactamente 22 dígitos', 'error');
+                return;
+            }
+
+            // Guardar en localStorage
+            localStorage.setItem('clubConfig', JSON.stringify(CONFIG));
+            showAlert('Configuración guardada exitosamente', 'success');
+        }
+
+        // Cargar configuración
+        function loadConfig() {
+            const saved = localStorage.getItem('clubConfig');
+            if (saved) {
+                CONFIG = JSON.parse(saved);
+            }
+        }
+
+        // Resetear configuración
+        function resetConfig() {
+            if (confirm('¿Está seguro de que desea restaurar los valores predeterminados? Esta acción no se puede deshacer.')) {
+                localStorage.removeItem('clubConfig');
+                CONFIG = {
+                    club: {
+                        nombre: "Club Náutico Embalse",
+                        direccion: "Av. Costanera s/n, Embalse, Córdoba",
+                        telefono1: "03571-485000",
+                        telefono2: "",
+                        email1: "info@clubnauticoembalse.com.ar",
+                        email2: "tesoreria@clubnauticoembalse.com.ar",
+                        web: "www.clubnauticoembalse.com.ar"
+                    },
+                    bancario: {
+                        cbu: "0720453520000000027854",
+                        alias: "CLUB.NAUTICO.EMBALSE",
+                        banco: "Banco de Córdoba",
+                        titular: "Club Náutico Embalse",
+                        tipoCuenta: "CC"
+                    },
+                    costos: {
+                        visita: 5000,
+                        cuotaMensual: 45000,
+                        amarraChica: 15000,
+                        amarraMediana: 25000,
+                        amarraGrande: 35000
+                    },
+                    facturacion: {
+                        diaVencimiento: 15,
+                        diasGracia: 5,
+                        tasaInteres: 3,
+                        generacionAuto: true
+                    }
+                };
+                updateForm();
+                showAlert('Configuración restaurada a valores predeterminados', 'success');
+            }
+        }
+
+        // Actualizar formulario con valores de CONFIG
+        function updateForm() {
+            document.getElementById('clubNombre').value = CONFIG.club.nombre;
+            document.getElementById('clubDireccion').value = CONFIG.club.direccion;
+            document.getElementById('clubTelefono1').value = CONFIG.club.telefono1;
+            document.getElementById('clubTelefono2').value = CONFIG.club.telefono2;
+            document.getElementById('clubEmail1').value = CONFIG.club.email1;
+            document.getElementById('clubEmail2').value = CONFIG.club.email2;
+            document.getElementById('clubWeb').value = CONFIG.club.web;
+
+            document.getElementById('bancarioCbu').value = CONFIG.bancario.cbu;
+            document.getElementById('bancarioAlias').value = CONFIG.bancario.alias;
+            document.getElementById('bancarioBanco').value = CONFIG.bancario.banco;
+            document.getElementById('bancarioTitular').value = CONFIG.bancario.titular;
+            document.getElementById('bancarioTipoCuenta').value = CONFIG.bancario.tipoCuenta;
+
+            document.getElementById('costosVisita').value = CONFIG.costos.visita;
+            document.getElementById('costosCuotaMensual').value = CONFIG.costos.cuotaMensual;
+            document.getElementById('costosAmarraChica').value = CONFIG.costos.amarraChica;
+            document.getElementById('costosAmarraMediana').value = CONFIG.costos.amarraMediana;
+            document.getElementById('costosAmarraGrande').value = CONFIG.costos.amarraGrande;
+
+            document.getElementById('facturacionDiaVencimiento').value = CONFIG.facturacion.diaVencimiento;
+            document.getElementById('facturacionDiasGracia').value = CONFIG.facturacion.diasGracia;
+            document.getElementById('facturacionTasaInteres').value = CONFIG.facturacion.tasaInteres;
+            document.getElementById('facturacionGeneracionAuto').checked = CONFIG.facturacion.generacionAuto;
+        }
+
+        // Cambiar de tab
+        function showTab(tabId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Desactivar todos los items del sidebar
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Activar la sección seleccionada
+            document.getElementById(tabId).classList.add('active');
+
+            // Activar el item del sidebar correspondiente
+            event.target.classList.add('active');
+        }
+
+        // Mostrar alerta
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.className = `alert alert-${type} show`;
+            
+            setTimeout(() => {
+                alert.classList.remove('show');
+            }, 5000);
+        }
+
+        // Función global para obtener configuración (usada por otros módulos)
+        function getConfig() {
+            const saved = localStorage.getItem('clubConfig');
+            if (saved) {
+                return JSON.parse(saved);
+            }
+            return CONFIG;
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            loadConfig();
+            updateForm();
+        });
+    </script>
+</body>
+</html>
+

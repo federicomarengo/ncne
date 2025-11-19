@@ -256,7 +256,7 @@
 
         <div class="description">
             <h3>🎯 Objetivo del Proyecto</h3>
-            <p>Modernizar el sistema de gestión del Club Náutico Embalse, reemplazando el sistema EVClub (Clarion/TopSpeed) por una solución web moderna con Angular y Python, incluyendo funcionalidades avanzadas de conciliación bancaria automática.</p>
+            <p>Sistema de gestión integral para el Club Náutico Embalse que permite administrar socios, embarcaciones, facturación, visitas y conciliación bancaria automática.</p>
         </div>
 
         <!-- Mockups principales -->
@@ -267,12 +267,12 @@
                     <i class="fas fa-tachometer-alt"></i>
                 </div>
                 <h3 class="mockup-title">Dashboard Principal</h3>
-                <p class="mockup-description">Panel de control con métricas en tiempo real, estadísticas de socios, ingresos y actividades recientes.</p>
+                <p class="mockup-description">Panel de control simplificado con métricas principales, navegación rápida y acceso directo a los módulos del sistema.</p>
                 <ul class="mockup-features">
-                    <li>Métricas financieras en tiempo real</li>
-                    <li>Actividad reciente de pagos</li>
+                    <li>3 métricas principales (Socios, Ingresos, Embarcaciones)</li>
                     <li>Navegación rápida a módulos</li>
-                    <li>Gráficos interactivos</li>
+                    <li>Gráfico de ingresos mensuales</li>
+                    <li>Acciones rápidas (Nuevo Socio, Generar Cupones, Conciliar, Portal)</li>
                 </ul>
                 <div class="btn btn-info">
                     <i class="fas fa-eye"></i> Ver Dashboard
@@ -285,12 +285,13 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <h3 class="mockup-title">Gestión de Socios</h3>
-                <p class="mockup-description">Administración completa de socios con filtros avanzados, búsqueda y gestión de membresías.</p>
+                <p class="mockup-description">Administración completa de socios con detalle de cuenta, movimientos financieros y gestión de visitas.</p>
                 <ul class="mockup-features">
                     <li>Listado completo de socios</li>
+                    <li>Detalle de cuenta con movimientos</li>
+                    <li>Carga y gestión de visitas</li>
                     <li>Filtros y búsqueda avanzada</li>
-                    <li>Formularios de alta/edición</li>
-                    <li>Estados de membresía</li>
+                    <li>Control de estados de socios</li>
                 </ul>
                 <div class="btn btn-success">
                     <i class="fas fa-eye"></i> Ver Socios
@@ -321,12 +322,13 @@
                     <i class="fas fa-receipt"></i>
                 </div>
                 <h3 class="mockup-title">Sistema de Facturación</h3>
-                <p class="mockup-description">Gestión completa de cobros, cupones, pagos y reportes financieros con múltiples métodos de pago.</p>
+                <p class="mockup-description">Gestión completa de cobros, cupones mensuales masivos, pagos y registro de transacciones financieras.</p>
                 <ul class="mockup-features">
-                    <li>Generación de cupones</li>
+                    <li>Generación masiva de cupones mensuales</li>
+                    <li>Vista previa antes de generar</li>
                     <li>Registro de pagos</li>
                     <li>Múltiples métodos de pago</li>
-                    <li>Reportes financieros</li>
+                    <li>Opciones avanzadas de generación</li>
                 </ul>
                 <div class="btn btn-warning">
                     <i class="fas fa-eye"></i> Ver Facturación
@@ -351,72 +353,43 @@
                 </div>
             </a>
 
-            <a href="instrucciones-pago.html" class="mockup-card">
+            <a href="mi-cuenta.html" class="mockup-card">
                 <div class="status-badge status-completed">Completado</div>
-                <div class="mockup-icon" style="color: #9b59b6;">
-                    <i class="fas fa-credit-card"></i>
+                <div class="mockup-icon" style="color: #16a085;">
+                    <i class="fas fa-user-circle"></i>
                 </div>
-                <h3 class="mockup-title">Instrucciones de Pago</h3>
-                <p class="mockup-description">Página optimizada para socios con instrucciones claras de pago y códigos de referencia únicos.</p>
+                <h3 class="mockup-title">Portal de Autogestión</h3>
+                <p class="mockup-description">Portal para que los socios consulten su estado de cuenta, cupones pendientes, historial de movimientos y datos bancarios de forma autónoma.</p>
                 <ul class="mockup-features">
-                    <li>Instrucciones paso a paso</li>
-                    <li>Códigos de referencia únicos</li>
-                    <li>Datos bancarios completos</li>
-                    <li>Ejemplos de concepto correcto</li>
+                    <li>Consulta de estado de cuenta 24/7</li>
+                    <li>Cupones pendientes y vencidos</li>
+                    <li>Historial unificado de movimientos</li>
+                    <li>Datos bancarios (CBU)</li>
+                    <li>Acceso con DNI y número de socio</li>
+                    <li>Ejemplos de login para pruebas</li>
                 </ul>
-                <div class="btn" style="background: #9b59b6;">
-                    <i class="fas fa-eye"></i> Ver Instrucciones
+                <div class="btn" style="background: #16a085;">
+                    <i class="fas fa-eye"></i> Ver Portal
                 </div>
             </a>
-        </div>
 
-        <!-- Stack tecnológico -->
-        <div class="tech-stack">
-            <h3>🛠️ Stack Tecnológico Propuesto</h3>
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <div class="tech-icon" style="color: #dd0031;">
-                        <i class="fab fa-angular"></i>
-                    </div>
-                    <div class="tech-name">Angular 17+</div>
-                    <div class="tech-description">Frontend Framework</div>
+            <a href="configuracion.html" class="mockup-card">
+                <div class="status-badge status-completed">Completado</div>
+                <div class="mockup-icon" style="color: #9b59b6;">
+                    <i class="fas fa-cog"></i>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-icon" style="color: #3776ab;">
-                        <i class="fab fa-python"></i>
-                    </div>
-                    <div class="tech-name">Python FastAPI</div>
-                    <div class="tech-description">Backend API</div>
+                <h3 class="mockup-title">Configuración del Sistema</h3>
+                <p class="mockup-description">Gestión centralizada de todos los parámetros y valores configurables del sistema.</p>
+                <ul class="mockup-features">
+                    <li>Información del Club</li>
+                    <li>Datos Bancarios (CBU, Alias)</li>
+                    <li>Costos y Tarifas (Visitas, Cuotas, Amarras)</li>
+                    <li>Parámetros de Facturación</li>
+                </ul>
+                <div class="btn" style="background: #9b59b6;">
+                    <i class="fas fa-cog"></i> Ver Configuración
                 </div>
-                <div class="tech-item">
-                    <div class="tech-icon" style="color: #336791;">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="tech-name">PostgreSQL</div>
-                    <div class="tech-description">Base de Datos</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon" style="color: #25d366;">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="tech-name">WhatsApp API</div>
-                    <div class="tech-description">Notificaciones</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon" style="color: #ff6b35;">
-                        <i class="fas fa-file-csv"></i>
-                    </div>
-                    <div class="tech-name">CSV Processing</div>
-                    <div class="tech-description">Conciliación Bancaria</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon" style="color: #f39c12;">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="tech-name">IA Matching</div>
-                    <div class="tech-description">Conciliación Inteligente</div>
-                </div>
-            </div>
+            </a>
         </div>
 
         <!-- Funcionalidades clave -->
@@ -435,9 +408,10 @@
                 <div>
                     <h4 style="color: #2c3e50; margin-bottom: 1rem;">💳 Gestión Financiera</h4>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0; color: #495057;">✓ Generación automática de cupones</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Generación masiva de cupones mensuales</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Vista previa antes de generar</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Registro de pagos</li>
                         <li style="padding: 0.5rem 0; color: #495057;">✓ Múltiples métodos de pago</li>
-                        <li style="padding: 0.5rem 0; color: #495057;">✓ Reportes financieros detallados</li>
                         <li style="padding: 0.5rem 0; color: #495057;">✓ Dashboard con métricas clave</li>
                     </ul>
                 </div>
@@ -445,9 +419,10 @@
                     <h4 style="color: #2c3e50; margin-bottom: 1rem;">👥 Gestión de Socios</h4>
                     <ul style="list-style: none; padding: 0;">
                         <li style="padding: 0.5rem 0; color: #495057;">✓ Registro completo de socios</li>
-                        <li style="padding: 0.5rem 0; color: #495057;">✓ Control de membresías</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Detalle de cuenta con movimientos</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Carga y gestión de visitas</li>
                         <li style="padding: 0.5rem 0; color: #495057;">✓ Filtros y búsqueda avanzada</li>
-                        <li style="padding: 0.5rem 0; color: #495057;">✓ Estados de actividad</li>
+                        <li style="padding: 0.5rem 0; color: #495057;">✓ Control de estados de socios</li>
                     </ul>
                 </div>
                 <div>
@@ -463,8 +438,8 @@
         </div>
 
         <div class="footer">
-            <p>© 2025 Club Náutico Embalse - Sistema de Gestión Moderno</p>
-            <p>Desarrollado con Angular + Python FastAPI</p>
+            <p>© 2025 Club Náutico Embalse - Sistema de Gestión</p>
+            <p><a href="FUNCIONALIDADES.md" style="color: white; text-decoration: underline;">Ver Documentación Completa de Funcionalidades</a></p>
         </div>
     </div>
 

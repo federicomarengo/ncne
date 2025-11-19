@@ -1,0 +1,31 @@
+# Archivos con datos sensibles
+*.db
+*.sqlite
+*.sqlite3
+club_nautico.db
+cuenta de banco.txt
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+
+# Directorios de datos
+metricas/
+datos/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (si se usa en el futuro)
+node_modules/
+

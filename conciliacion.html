@@ -37,7 +37,7 @@
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -66,6 +66,7 @@
             align-items: center;
             gap: 0.5rem;
             transition: background 0.2s;
+            font-size: 1rem;
         }
         
         .btn:hover {
@@ -104,6 +105,19 @@
             background: #138496;
         }
         
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -135,12 +149,106 @@
             font-size: 0.9rem;
         }
         
+        .metric-card .subtitle {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+        
+        .upload-section {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .upload-area {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .upload-area.dragover {
+            border-color: #3498db;
+            background: #e3f2fd;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        .file-info {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .file-info.show {
+            display: block;
+        }
+        
+        .file-preview {
+            background: #2c3e50;
+            color: #ecf0f1;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            white-space: pre;
+        }
+        
+        .progress-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: none;
+        }
+        
+        .progress-section.show {
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        
         .tabs {
             display: flex;
             background: white;
             border-radius: 12px 12px 0 0;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             margin-bottom: 0;
+            overflow-x: auto;
         }
         
         .tab {
@@ -148,6 +256,7 @@
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.2s;
+            white-space: nowrap;
         }
         
         .tab.active {
@@ -164,65 +273,23 @@
             border-radius: 0 0 12px 12px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 2rem;
+            display: none;
         }
         
-        .upload-section {
-            background: #f8f9fa;
-            border: 2px dashed #dee2e6;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
+        .tab-content.active {
+            display: block;
         }
         
-        .upload-section.dragover {
-            border-color: #3498db;
-            background: #e3f2fd;
+        .results-section {
+            display: none;
         }
         
-        .upload-icon {
-            font-size: 3rem;
-            color: #6c757d;
-            margin-bottom: 1rem;
-        }
-        
-        .filters {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-label {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-        
-        .form-input {
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        
-        .form-input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        .results-section.show {
+            display: block;
         }
         
         .table-container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin-bottom: 2rem;
+            overflow-x: auto;
         }
         
         .table {
@@ -237,232 +304,124 @@
             font-weight: 600;
             color: #2c3e50;
             border-bottom: 2px solid #dee2e6;
+            position: sticky;
+            top: 0;
         }
         
         .table td {
             padding: 1rem;
             border-bottom: 1px solid #dee2e6;
+            vertical-align: middle;
         }
         
         .table tbody tr:hover {
             background: #f8f9fa;
         }
         
-        .status-badge {
-            padding: 0.25rem 0.75rem;
+        .badge {
+            padding: 0.35rem 0.75rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            display: inline-block;
         }
         
-        .status-conciliado {
+        .badge-exacto-cuit {
             background: #d4edda;
             color: #155724;
         }
         
-        .status-pendiente {
+        .badge-exacto-dni {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .badge-nombre {
+            background: #cce5ff;
+            color: #004085;
+        }
+        
+        .badge-apellido-similar {
             background: #fff3cd;
             color: #856404;
         }
         
-        .status-error {
+        .badge-sin-match {
             background: #f8d7da;
             color: #721c24;
         }
         
-        .status-sin-socio {
+        .badge-no-socio {
             background: #e2e3e5;
             color: #383d41;
         }
         
-        .movimiento-item {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-left: 4px solid #dee2e6;
+        .badge-duplicado {
+            background: #f5c6cb;
+            color: #721c24;
         }
         
-        .movimiento-item.conciliado {
-            border-left-color: #27ae60;
-        }
-        
-        .movimiento-item.pendiente {
-            border-left-color: #f39c12;
-        }
-        
-        .movimiento-item.error {
-            border-left-color: #e74c3c;
-        }
-        
-        .movimiento-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .movimiento-info {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-        
-        .movimiento-fecha {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .movimiento-monto {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #27ae60;
-        }
-        
-        .movimiento-concepto {
-            color: #6c757d;
-            font-style: italic;
-        }
-        
-        .sugerencias {
-            background: #f8f9fa;
-            border-radius: 6px;
-            padding: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .sugerencias h5 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-        
-        .sugerencia-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem;
-            background: white;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-        }
-        
-        .sugerencia-info {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        .sugerencia-socio {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .sugerencia-monto {
-            color: #6c757d;
-        }
-        
-        .sugerencia-acciones {
+        .actions-cell {
             display: flex;
             gap: 0.5rem;
-        }
-        
-        .btn-sm {
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
-        }
-        
-        .acciones-manuales {
-            display: flex;
-            gap: 1rem;
             align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #dee2e6;
         }
         
-        .input-socio {
-            width: 120px;
+        .socio-selector {
             padding: 0.5rem;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 0.9rem;
+            min-width: 200px;
         }
         
-        .instrucciones-pago {
-            background: #e3f2fd;
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .instrucciones-pago h3 {
-            color: #1976d2;
-            margin-bottom: 1rem;
-        }
-        
-        .datos-bancarios {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .dato-item {
+        .action-buttons {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f0f0f0;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+            flex-wrap: wrap;
         }
         
-        .dato-item:last-child {
-            border-bottom: none;
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6c757d;
         }
         
-        .dato-label {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .dato-value {
-            font-family: monospace;
-            background: #f8f9fa;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            color: #495057;
-        }
-        
-        .concepto-importante {
-            background: #fff3cd !important;
-            color: #856404 !important;
-            font-weight: bold;
-            padding: 0.5rem !important;
-        }
-        
-        .ejemplos {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-        
-        .ejemplos h4 {
-            color: #2c3e50;
+        .empty-state i {
+            font-size: 4rem;
             margin-bottom: 1rem;
+            opacity: 0.5;
         }
         
-        .ejemplos ul {
-            list-style: none;
-            padding: 0;
+        .confidence-indicator {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-left: 0.5rem;
         }
         
-        .ejemplos li {
-            padding: 0.25rem 0;
-            font-family: monospace;
-            color: #495057;
+        .match-details {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 0.25rem;
         }
         
-        .ejemplos li:before {
-            content: "✅ ";
+        .checkbox-cell {
+            width: 40px;
+            text-align: center;
+        }
+        
+        .checkbox-cell input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .amount {
+            font-weight: 600;
             color: #27ae60;
         }
         
@@ -475,13 +434,15 @@
             height: 100%;
             background: rgba(0,0,0,0.5);
             z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.show {
+            display: flex;
         }
         
         .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             background: white;
             border-radius: 12px;
             padding: 2rem;
@@ -511,31 +472,63 @@
             color: #6c757d;
         }
         
-        .progress-bar {
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .form-input {
             width: 100%;
-            height: 20px;
-            background: #e9ecef;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 1rem 0;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
         }
         
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
-            transition: width 0.3s ease;
+        .form-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
         
-        .log-container {
-            background: #2c3e50;
-            color: #ecf0f1;
-            border-radius: 8px;
-            padding: 1rem;
-            font-family: monospace;
-            font-size: 0.85rem;
+        .search-results {
             max-height: 200px;
             overflow-y: auto;
-            margin-top: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        .search-results.show {
+            display: block;
+        }
+        
+        .search-item {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        
+        .search-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .search-item:last-child {
+            border-bottom: none;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -564,450 +557,1264 @@
                 <a href="conciliacion.html" style="color: white; text-decoration: none;">
                     <i class="fas fa-exchange-alt"></i> Conciliación
                 </a>
+                <a href="configuracion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
             </div>
         </div>
     </div>
 
     <div class="container">
         <div class="page-header">
-            <h1 class="page-title">Conciliación Bancaria</h1>
-            <div style="display: flex; gap: 1rem;">
-                <button class="btn btn-info" onclick="mostrarInstrucciones()">
-                    <i class="fas fa-info-circle"></i> Instrucciones de Pago
-                </button>
-                <button class="btn btn-success" onclick="procesarArchivo()">
-                    <i class="fas fa-file-upload"></i> Procesar Archivo
-                </button>
-            </div>
+            <h1 class="page-title">
+                <i class="fas fa-exchange-alt"></i> Conciliación Bancaria Automática
+            </h1>
         </div>
 
-        <!-- Métricas de conciliación -->
-        <div class="metrics-grid">
+        <!-- Métricas resumen -->
+        <div class="metrics-grid" id="metricsGrid" style="display: none;">
+            <div class="metric-card">
+                <div class="icon" style="color: #3498db;">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="number" id="totalMovimientos">0</div>
+                <div class="label">Total Movimientos</div>
+            </div>
             <div class="metric-card">
                 <div class="icon" style="color: #27ae60;">
                     <i class="fas fa-check-circle"></i>
                 </div>
-                <div class="number" style="color: #27ae60;">47</div>
-                <div class="label">Conciliados Automáticamente</div>
+                <div class="number" id="matchExacto">0</div>
+                <div class="label">Match Exacto</div>
+                <div class="subtitle" id="montoMatchExacto">$0</div>
             </div>
             <div class="metric-card">
                 <div class="icon" style="color: #f39c12;">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-exclamation-circle"></i>
                 </div>
-                <div class="number" style="color: #f39c12;">8</div>
-                <div class="label">Pendientes de Revisión</div>
+                <div class="number" id="matchProbable">0</div>
+                <div class="label">Match Probable</div>
+                <div class="subtitle" id="montoMatchProbable">$0</div>
             </div>
             <div class="metric-card">
                 <div class="icon" style="color: #e74c3c;">
-                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="fas fa-question-circle"></i>
                 </div>
-                <div class="number" style="color: #e74c3c;">2</div>
-                <div class="label">Con Errores</div>
+                <div class="number" id="sinMatch">0</div>
+                <div class="label">Sin Coincidencia</div>
+                <div class="subtitle" id="montoSinMatch">$0</div>
             </div>
             <div class="metric-card">
-                <div class="icon" style="color: #3498db;">
-                    <i class="fas fa-percentage"></i>
+                <div class="icon" style="color: #e67e22;">
+                    <i class="fas fa-copy"></i>
                 </div>
-                <div class="number" style="color: #3498db;">85.4%</div>
-                <div class="label">% Conciliación Automática</div>
+                <div class="number" id="duplicados">0</div>
+                <div class="label">Ya Registrados</div>
+                <div class="subtitle" id="montoDuplicados">$0</div>
             </div>
         </div>
 
-        <!-- Instrucciones de pago -->
-        <div id="instrucciones" class="instrucciones-pago" style="display: none;">
-            <h3>📋 Instrucciones de Pago para Socios</h3>
-            
-            <div class="datos-bancarios">
-                <h4>Datos para Transferencia:</h4>
-                <div class="dato-item">
-                    <span class="dato-label">Banco:</span>
-                    <span class="dato-value">Santander Río</span>
-                </div>
-                <div class="dato-item">
-                    <span class="dato-label">CBU:</span>
-                    <span class="dato-value">0720453520000000027854</span>
-                    <button class="btn btn-sm" onclick="copiarCBU()">Copiar</button>
-                </div>
-                <div class="dato-item">
-                    <span class="dato-label">Concepto:</span>
-                    <span class="dato-value concepto-importante">NCNE001</span>
-                    <button class="btn btn-sm" onclick="copiarConcepto()">Copiar</button>
-                </div>
-            </div>
-            
-            <div class="ejemplos">
-                <h4>Ejemplos de Concepto Correcto:</h4>
-                <ul>
-                    <li>NCNE001</li>
-                    <li>NCNE 001</li>
-                    <li>NCNE-001</li>
-                    <li>Cuota NCNE001</li>
-                    <li>Pago NCNE001</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab active" onclick="showTab('procesar')">
-                <i class="fas fa-file-upload"></i> Procesar Archivo
-            </div>
-            <div class="tab" onclick="showTab('pendientes')">
-                <i class="fas fa-clock"></i> Pendientes (8)
-            </div>
-            <div class="tab" onclick="showTab('conciliados')">
-                <i class="fas fa-check-circle"></i> Conciliados (47)
-            </div>
-            <div class="tab" onclick="showTab('errores')">
-                <i class="fas fa-exclamation-triangle"></i> Errores (2)
-            </div>
-        </div>
-
-        <!-- Contenido de Procesar Archivo -->
-        <div id="procesar" class="tab-content">
-            <div class="upload-section" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+        <!-- Sección de carga -->
+        <div class="upload-section" id="uploadSection">
+            <h2 style="margin-bottom: 1.5rem; color: #2c3e50;">
+                <i class="fas fa-cloud-upload-alt"></i> Cargar Extracto Bancario
+            </h2>
+            <div class="upload-area" id="uploadArea" 
+                 ondrop="handleDrop(event)" 
+                 ondragover="handleDragOver(event)"
+                 ondragleave="handleDragLeave(event)">
                 <div class="upload-icon">
-                    <i class="fas fa-cloud-upload-alt"></i>
+                    <i class="fas fa-file-alt"></i>
                 </div>
-                <h3>Subir Archivo de Movimientos Bancarios</h3>
-                <p>Arrastra y suelta el archivo CSV del banco aquí, o haz clic para seleccionar</p>
-                <input type="file" id="fileInput" accept=".csv,.xlsx" style="display: none;" onchange="handleFileSelect(event)">
+                <h3>Arrastra y suelta el archivo aquí</h3>
+                <p style="color: #6c757d; margin: 1rem 0;">o</p>
+                <input type="file" id="fileInput" accept=".txt" style="display: none;" onchange="handleFileSelect(event)">
                 <button class="btn btn-success" onclick="document.getElementById('fileInput').click()">
-                    <i class="fas fa-folder-open"></i> Seleccionar Archivo
+                    <i class="fas fa-folder-open"></i> Seleccionar Archivo .txt
                 </button>
+                <p style="color: #6c757d; margin-top: 1rem; font-size: 0.9rem;">
+                    Formato aceptado: Archivo de texto (.txt) del extracto bancario
+                </p>
             </div>
 
-            <div id="procesando" style="display: none;">
-                <h3>Procesando archivo...</h3>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
-                </div>
-                <div class="log-container" id="logContainer">
-                    Iniciando procesamiento...<br>
-                </div>
-            </div>
-        </div>
-
-        <!-- Contenido de Pendientes -->
-        <div id="pendientes" class="tab-content" style="display: none;">
-            <div class="filters">
-                <div class="form-group">
-                    <label class="form-label">Buscar</label>
-                    <input type="text" class="form-input" placeholder="Concepto, monto...">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Fecha Desde</label>
-                    <input type="date" class="form-input">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Fecha Hasta</label>
-                    <input type="date" class="form-input">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Monto</label>
-                    <input type="number" class="form-input" placeholder="Monto exacto">
-                </div>
-            </div>
-
-            <div class="movimientos-pendientes">
-                <h4>Movimientos Pendientes de Conciliación (8)</h4>
-                
-                <div class="movimiento-item pendiente">
-                    <div class="movimiento-header">
-                        <div class="movimiento-info">
-                            <span class="movimiento-fecha">10/10/2025</span>
-                            <span class="movimiento-monto">$45,000</span>
-                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - JUAN PEREZ</span>
-                        </div>
-                        <span class="status-badge status-pendiente">Pendiente</span>
-                    </div>
-                    
-                    <div class="sugerencias">
-                        <h5>Posibles coincidencias:</h5>
-                        <div class="sugerencia-item">
-                            <div class="sugerencia-info">
-                                <span class="sugerencia-socio">Juan Carlos Pérez</span>
-                                <span class="sugerencia-monto">$45,000 - Cupón 00001290</span>
-                            </div>
-                            <div class="sugerencia-acciones">
-                                <button class="btn btn-sm btn-success" onclick="conciliar(1, 1)">Conciliar</button>
-                                <button class="btn btn-sm btn-info" onclick="verDetalles(1)">Ver</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="acciones-manuales">
-                        <input type="number" class="input-socio" placeholder="N° Socio" id="socio-1">
-                        <button class="btn btn-sm btn-warning" onclick="conciliarManual(1)">Conciliar Manual</button>
-                        <button class="btn btn-sm" style="background: #6c757d;" onclick="marcarRevisado(1)">Marcar Revisado</button>
-                    </div>
-                </div>
-
-                <div class="movimiento-item pendiente">
-                    <div class="movimiento-header">
-                        <div class="movimiento-info">
-                            <span class="movimiento-fecha">11/10/2025</span>
-                            <span class="movimiento-monto">$45,000</span>
-                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - MARIA GONZALEZ</span>
-                        </div>
-                        <span class="status-badge status-pendiente">Pendiente</span>
-                    </div>
-                    
-                    <div class="sugerencias">
-                        <h5>Posibles coincidencias:</h5>
-                        <div class="sugerencia-item">
-                            <div class="sugerencia-info">
-                                <span class="sugerencia-socio">María Elena González</span>
-                                <span class="sugerencia-monto">$45,000 - Cupón 00001291</span>
-                            </div>
-                            <div class="sugerencia-acciones">
-                                <button class="btn btn-sm btn-success" onclick="conciliar(2, 2)">Conciliar</button>
-                                <button class="btn btn-sm btn-info" onclick="verDetalles(2)">Ver</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="acciones-manuales">
-                        <input type="number" class="input-socio" placeholder="N° Socio" id="socio-2">
-                        <button class="btn btn-sm btn-warning" onclick="conciliarManual(2)">Conciliar Manual</button>
-                        <button class="btn btn-sm" style="background: #6c757d;" onclick="marcarRevisado(2)">Marcar Revisado</button>
-                    </div>
-                </div>
-
-                <div class="movimiento-item error">
-                    <div class="movimiento-header">
-                        <div class="movimiento-info">
-                            <span class="movimiento-fecha">12/10/2025</span>
-                            <span class="movimiento-monto">$90,000</span>
-                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - CARLOS LOPEZ</span>
-                        </div>
-                        <span class="status-badge status-error">Error</span>
-                    </div>
-                    
-                    <div class="sugerencias">
-                        <h5>⚠️ Monto no coincide con cupones pendientes</h5>
-                        <p>El monto ($90,000) no coincide con ningún cupón pendiente. Posibles causas:</p>
-                        <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                            <li>Pago de múltiples cuotas</li>
-                            <li>Pago con intereses</li>
-                            <li>Error en el monto</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="acciones-manuales">
-                        <input type="number" class="input-socio" placeholder="N° Socio" id="socio-3">
-                        <button class="btn btn-sm btn-warning" onclick="conciliarManual(3)">Conciliar Manual</button>
-                        <button class="btn btn-sm" style="background: #6c757d;" onclick="marcarRevisado(3)">Marcar Revisado</button>
-                    </div>
+            <div class="file-info" id="fileInfo">
+                <h4><i class="fas fa-file-check"></i> Archivo cargado:</h4>
+                <p><strong>Nombre:</strong> <span id="fileName"></span></p>
+                <p><strong>Tamaño:</strong> <span id="fileSize"></span></p>
+                <p><strong>Cuenta:</strong> <span id="accountNumber">Cuenta Corriente en Pesos Nro. 453-000278/5</span></p>
+                <div class="file-preview" id="filePreview"></div>
+                <div style="margin-top: 1rem;">
+                    <button class="btn btn-success" onclick="procesarArchivo()">
+                        <i class="fas fa-cogs"></i> Procesar Archivo
+                    </button>
+                    <button class="btn btn-secondary" onclick="cancelarCarga()">
+                        <i class="fas fa-times"></i> Cancelar
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Contenido de Conciliados -->
-        <div id="conciliados" class="tab-content" style="display: none;">
+        <!-- Sección de progreso -->
+        <div class="progress-section" id="progressSection">
+            <h3><i class="fas fa-spinner fa-spin"></i> Procesando extracto bancario...</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%">0%</div>
+                </div>
+            <p id="progressText" style="color: #6c757d; text-align: center;">Iniciando...</p>
+            </div>
+
+        <!-- Resultados -->
+        <div class="results-section" id="resultsSection">
+            <!-- Tabs de clasificación -->
+            <div class="tabs">
+                <div class="tab active" onclick="mostrarTab('todos')">
+                    <i class="fas fa-list"></i> Todos (<span id="countTodos">0</span>)
+                        </div>
+                <div class="tab" onclick="mostrarTab('exacto')">
+                    <i class="fas fa-check-circle"></i> Match Exacto (<span id="countExacto">0</span>)
+                    </div>
+                <div class="tab" onclick="mostrarTab('probable')">
+                    <i class="fas fa-exclamation-circle"></i> Probable (<span id="countProbable">0</span>)
+                            </div>
+                <div class="tab" onclick="mostrarTab('sin-match')">
+                    <i class="fas fa-question-circle"></i> Sin Match (<span id="countSinMatch">0</span>)
+                            </div>
+                <div class="tab" onclick="mostrarTab('duplicados')">
+                    <i class="fas fa-copy"></i> Duplicados (<span id="countDuplicados">0</span>)
+                        </div>
+                    </div>
+                    
+            <!-- Contenido de tabs -->
+            <div class="tab-content active" id="tab-todos">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell">
+                                    <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                                </th>
+                                <th>Fecha</th>
+                                <th>Nombre (Extracto)</th>
+                                <th>CUIT/CUIL</th>
+                                <th>Monto</th>
+                                <th>Socio Identificado</th>
+                                <th>Match</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaTodos">
+                        </tbody>
+                    </table>
+                    </div>
+                <div class="action-buttons">
+                    <button class="btn btn-success" onclick="confirmarMasivoExactos()">
+                        <i class="fas fa-check-double"></i> Confirmar Todos los Exactos
+                    </button>
+                    <button class="btn btn-info" onclick="confirmarSeleccionados()">
+                        <i class="fas fa-check"></i> Confirmar Seleccionados
+                    </button>
+                    <button class="btn btn-warning" onclick="exportarResultados()">
+                        <i class="fas fa-file-export"></i> Exportar Resultados
+                    </button>
+                    <button class="btn btn-danger" onclick="descartarArchivo()">
+                        <i class="fas fa-trash"></i> Descartar Todo
+                    </button>
+                </div>
+                    </div>
+                    
+            <div class="tab-content" id="tab-exacto">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell">
+                                    <input type="checkbox" onchange="toggleSelectAllTab('exacto')">
+                                </th>
+                                <th>Fecha</th>
+                                <th>Nombre (Extracto)</th>
+                                <th>CUIT/CUIL</th>
+                                <th>Monto</th>
+                                <th>Socio Identificado</th>
+                                <th>Match</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaExacto">
+                        </tbody>
+                    </table>
+                            </div>
+                <div class="action-buttons">
+                    <button class="btn btn-success" onclick="confirmarMasivoExactos()">
+                        <i class="fas fa-check-double"></i> Confirmar Todos
+                    </button>
+                        </div>
+                    </div>
+                    
+            <div class="tab-content" id="tab-probable">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-cell">
+                                    <input type="checkbox" onchange="toggleSelectAllTab('probable')">
+                                </th>
+                                <th>Fecha</th>
+                                <th>Nombre (Extracto)</th>
+                                <th>CUIT/CUIL</th>
+                                <th>Monto</th>
+                                <th>Socio Identificado</th>
+                                <th>Match</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaProbable">
+                        </tbody>
+                    </table>
+                    </div>
+                <div class="action-buttons">
+                    <button class="btn btn-info" onclick="confirmarSeleccionados()">
+                        <i class="fas fa-check"></i> Confirmar Seleccionados
+                    </button>
+                </div>
+                    </div>
+                    
+            <div class="tab-content" id="tab-sin-match">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Nombre (Extracto)</th>
+                                <th>CUIT/CUIL</th>
+                                <th>Monto</th>
+                                <th>Asignar Socio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaSinMatch">
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+
+            <div class="tab-content" id="tab-duplicados">
             <div class="table-container">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                                <th>Nombre (Extracto)</th>
+                                <th>CUIT/CUIL</th>
                             <th>Monto</th>
-                            <th>Concepto</th>
                             <th>Socio</th>
-                            <th>Cupón</th>
-                            <th>Estado</th>
+                                <th>Registro Previo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>10/10/2025</td>
-                            <td class="movimiento-monto">$45,000</td>
-                            <td>TRANSFERENCIA RECIBIDA - NCNE001</td>
-                            <td>Juan Carlos Pérez</td>
-                            <td>00001289</td>
-                            <td><span class="status-badge status-conciliado">Conciliado</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-info">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>09/10/2025</td>
-                            <td class="movimiento-monto">$45,000</td>
-                            <td>TRANSFERENCIA RECIBIDA - NCNE002</td>
-                            <td>María Elena González</td>
-                            <td>00001290</td>
-                            <td><span class="status-badge status-conciliado">Conciliado</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-info">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <tbody id="tablaDuplicados">
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <!-- Contenido de Errores -->
-        <div id="errores" class="tab-content" style="display: none;">
-            <div class="movimientos-pendientes">
-                <h4>Movimientos con Errores (2)</h4>
-                
-                <div class="movimiento-item error">
-                    <div class="movimiento-header">
-                        <div class="movimiento-info">
-                            <span class="movimiento-fecha">12/10/2025</span>
-                            <span class="movimiento-monto">$90,000</span>
-                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - CARLOS LOPEZ</span>
                         </div>
-                        <span class="status-badge status-error">Error</span>
                     </div>
                     
-                    <div class="sugerencias">
-                        <h5>⚠️ Error: Monto no coincide</h5>
-                        <p>El monto ($90,000) no coincide con ningún cupón pendiente.</p>
+    <!-- Modal de Confirmación -->
+    <div class="modal" id="modalConfirmacion">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirmar Pagos</h3>
+                <button class="close" onclick="cerrarModal('modalConfirmacion')">&times;</button>
                     </div>
+            <div id="confirmacionContent">
+                <p>¿Estás seguro de que deseas confirmar estos pagos?</p>
+                <p><strong>Total de pagos:</strong> <span id="totalPagos">0</span></p>
+                <p><strong>Monto total:</strong> <span id="montoTotal">$0</span></p>
                 </div>
-
-                <div class="movimiento-item error">
-                    <div class="movimiento-header">
-                        <div class="movimiento-info">
-                            <span class="movimiento-fecha">13/10/2025</span>
-                            <span class="movimiento-monto">$22,500</span>
-                            <span class="movimiento-concepto">TRANSFERENCIA RECIBIDA - ANA RODRIGUEZ</span>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: flex-end;">
+                <button class="btn btn-secondary" onclick="cerrarModal('modalConfirmacion')">
+                    Cancelar
+                </button>
+                <button class="btn btn-success" onclick="ejecutarConfirmacion()">
+                    Confirmar
+                </button>
                         </div>
-                        <span class="status-badge status-error">Error</span>
-                    </div>
-                    
-                    <div class="sugerencias">
-                        <h5>⚠️ Error: Monto parcial</h5>
-                        <p>El monto ($22,500) es la mitad del cupón pendiente ($45,000).</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <script>
-        function showTab(tabName) {
-            // Ocultar todos los contenidos
-            const contents = document.querySelectorAll('.tab-content');
-            contents.forEach(content => content.style.display = 'none');
-            
-            // Remover clase active de todos los tabs
-            const tabs = document.querySelectorAll('.tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            
-            // Mostrar el contenido seleccionado
-            document.getElementById(tabName).style.display = 'block';
-            
-            // Agregar clase active al tab seleccionado
-            event.target.classList.add('active');
+        // Datos reales de socios con embarcaciones (59 socios activos)
+        const sociosEjemplo = [
+            { id: 1, nombre: "Albuixech Francisco", dni: "11347292", email: "francisco-albuixech@gmail.com" },
+            { id: 2, nombre: "Benmergui Eduardo Alfredo", dni: "11347552", email: "eaben@hotmail.com" },
+            { id: 3, nombre: "Bertone Guillermo", dni: "11101555", email: "bertoneguillermo@arnet.com.ar" },
+            { id: 4, nombre: "Boretti Nicolás", dni: "24158052", email: "nicolasboretti@hotmail.com" },
+            { id: 5, nombre: "Buratovich Nicolás Francisco", dni: "21521385", email: "arynico@hotmail.com" },
+            { id: 6, nombre: "Cali Martín", dni: "20804369", email: "martincalimotos@gmail.com" },
+            { id: 7, nombre: "Chiappero Jorge", dni: "14050673", email: "jorgechiappero@arnet.com.ar" },
+            { id: 8, nombre: "Coggiola Yanina", dni: "7960739", email: "yacoyola@gmail.com" },
+            { id: 9, nombre: "Costa Oscar Daniel", dni: "11527405", email: "arquitecto.oscarcosta@gmail.com" },
+            { id: 10, nombre: "Crisafulli Victor Raúl", dni: "10377388", email: "soleats86@gmail.com" },
+            { id: 11, nombre: "Fenoglio Alberto Ramón", dni: "7870473", email: "info@estudiomacagno.com.ar" },
+            { id: 12, nombre: "Garrido José María", dni: "12367882", email: "garrido.josemaria@hotmail.com" },
+            { id: 13, nombre: "Maisterrena Alfredo", dni: "12082152", email: "amaiste@yahoo.com.ar" },
+            { id: 14, nombre: "Otero Marcelo", dni: "17105789", email: "marcelo_otero@arnetbiz.com.ar" },
+            { id: 15, nombre: "Simari Daniel", dni: "14986425", email: "None" },
+            { id: 16, nombre: "Vollenweider Enrique Franco", dni: "08008726", email: "enriquevollen@yahoo.com" },
+            { id: 17, nombre: "Bocos Alonso Victor José", dni: "93179353", email: "None" },
+            { id: 18, nombre: "Kohan Julio Esteban", dni: "24522218", email: "juliokohan@arnet.com.ar" },
+            { id: 19, nombre: "Pezzutti Hernán", dni: "16530230", email: "hpezzutti@intramed.net" },
+            { id: 20, nombre: "Riolfi Cristian Alejandro", dni: "21396463", email: "riolfibuceo@yahoo.com.ar" },
+            { id: 21, nombre: "Vazquez Horacio Pedro", dni: "13015669", email: "normamarchisio@hotmail.com" },
+            { id: 22, nombre: "Fumarco Guillermo", dni: "12144293", email: "gfumarco@hotmail.com" },
+            { id: 23, nombre: "Leunda Daniel Eugenio", dni: "13537606", email: "ingenia.controldeacceso@gmail.com" },
+            { id: 24, nombre: "Otermin Andres Angel", dni: "6", email: "aotermin1@gmail.com" },
+            { id: 25, nombre: "Nicola Claudia Susana", dni: "13956641", email: "clau1400@hotmail.com.ar" },
+            { id: 26, nombre: "Supermercados Caracol", dni: "3066878451", email: "None" },
+            { id: 27, nombre: "Comercial FEYRO S.A.", dni: "30537200291", email: "None" },
+            { id: 28, nombre: "Romero Rubén Jesus", dni: "20136393740", email: "None" },
+            { id: 29, nombre: "Ferretería Moroni", dni: "20115626345", email: "None" },
+            { id: 30, nombre: "Romero Vicente Ramón", dni: "20127496383", email: "None" },
+            { id: 31, nombre: "Wal-Mart Argentina SRL", dni: "30678138300", email: "None" },
+            { id: 32, nombre: "Ferreteria Font Metal", dni: "20110763532", email: "None" },
+            { id: 33, nombre: "Elsa Caceres y Estela Beltramo Soc", dni: "30708301236", email: "None" },
+            { id: 34, nombre: "Aquanautica", dni: "20114024660", email: "None" },
+            { id: 35, nombre: "Vivero Irupe II", dni: "27264048538", email: "None" },
+            { id: 36, nombre: "Hercons S.R.L.", dni: "30710562888", email: "None" },
+            { id: 37, nombre: "Agroveterinaria Embalse", dni: "20276983181", email: "None" },
+            { id: 38, nombre: "Consejo Profecional de Ciencias Economic", dni: "11212121", email: "None" },
+            { id: 39, nombre: "Coop. Villa del Dique", dni: "30545710443", email: "None" },
+            { id: 40, nombre: "", dni: "", email: "" },
+            { id: 41, nombre: "BUSPACK Express", dni: "30707215689", email: "None" },
+            { id: 42, nombre: "Daniele Raul", dni: "2009", email: "None" },
+            { id: 43, nombre: "Todo pilas", dni: "2010", email: "None" },
+            { id: 44, nombre: "El emporio del bulon", dni: "2016", email: "None" },
+            { id: 45, nombre: "La ferreteria", dni: "2021", email: "None" },
+            { id: 46, nombre: "Via cargo", dni: "2028", email: "None" },
+            { id: 47, nombre: "Fernandez oscar", dni: "2027", email: "None" },
+            { id: 48, nombre: "Ecowin", dni: "2030", email: "None" },
+            { id: 49, nombre: "La Vaca Asociacion Civil", dni: "2032", email: "None" },
+            { id: 50, nombre: "Farias Norberto Gustavo", dni: "2035", email: "None" },
+            { id: 51, nombre: "Argente Hernan", dni: "2040", email: "None" },
+            { id: 52, nombre: "Donzelli y cia", dni: "2042", email: "None" },
+            { id: 53, nombre: "Lucero Walter", dni: "2045", email: "None" },
+            { id: 54, nombre: "Castro Eduardo", dni: "2049", email: "None" },
+            { id: 55, nombre: "Zuñiga Ariel", dni: "2050", email: "None" },
+            { id: 56, nombre: "Spizzamigglio Pedro", dni: "2051", email: "None" },
+            { id: 57, nombre: "Soliz Nahuel", dni: "2052", email: "None" },
+            { id: 58, nombre: "Dattatec SRL", dni: "30710173652", email: "None" },
+            { id: 59, nombre: "Martinez Guerrero Horacio", dni: "13699058", email: "mariagrandval@gmail.com" }
+        ];
+
+        // Pagos registrados (ejemplo)
+        const pagosRegistrados = [
+            { socioId: 2, fecha: new Date('2025-11-10'), monto: 28000, referencia: "825158" }
+        ];
+
+        // Variables globales
+        let archivoActual = null;
+        let movimientosProcessados = [];
+        let movimientosSeleccionados = new Set();
+
+        // Manejo de drag & drop
+        function handleDragOver(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.add('dragover');
         }
-        
-        function mostrarInstrucciones() {
-            const instrucciones = document.getElementById('instrucciones');
-            instrucciones.style.display = instrucciones.style.display === 'none' ? 'block' : 'none';
+
+        function handleDragLeave(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('dragover');
         }
-        
-        function copiarCBU() {
-            navigator.clipboard.writeText('0720453520000000027854');
-            alert('CBU copiado al portapapeles');
-        }
-        
-        function copiarConcepto() {
-            navigator.clipboard.writeText('NCNE001');
-            alert('Concepto copiado al portapapeles');
-        }
-        
-        function dragOverHandler(ev) {
-            ev.preventDefault();
-            ev.currentTarget.classList.add('dragover');
-        }
-        
-        function dropHandler(ev) {
-            ev.preventDefault();
-            ev.currentTarget.classList.remove('dragover');
-            const files = ev.dataTransfer.files;
+
+        function handleDrop(event) {
+            event.preventDefault();
+            document.getElementById('uploadArea').classList.remove('dragover');
+            const files = event.dataTransfer.files;
             if (files.length > 0) {
-                handleFile(files[0]);
+                cargarArchivo(files[0]);
             }
         }
-        
+
         function handleFileSelect(event) {
             const file = event.target.files[0];
             if (file) {
-                handleFile(file);
+                cargarArchivo(file);
             }
         }
-        
-        function handleFile(file) {
-            console.log('Archivo seleccionado:', file.name);
-            procesarArchivo();
+
+        function cargarArchivo(file) {
+            if (!file.name.endsWith('.txt')) {
+                alert('Por favor selecciona un archivo .txt');
+                return;
+            }
+
+            archivoActual = file;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const contenido = e.target.result;
+                mostrarVistaPrevia(file, contenido);
+            };
+            reader.readAsText(file, 'ISO-8859-1'); // Encoding típico de extractos bancarios
         }
-        
+
+        function mostrarVistaPrevia(file, contenido) {
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatBytes(file.size);
+            
+            // Mostrar primeras 10 líneas
+            const lineas = contenido.split('\n').slice(0, 10);
+            document.getElementById('filePreview').textContent = lineas.join('\n');
+            
+            document.getElementById('fileInfo').classList.add('show');
+        }
+
+        function cancelarCarga() {
+            archivoActual = null;
+            document.getElementById('fileInfo').classList.remove('show');
+            document.getElementById('fileInput').value = '';
+        }
+
         function procesarArchivo() {
-            const procesando = document.getElementById('procesando');
-            const logContainer = document.getElementById('logContainer');
+            if (!archivoActual) {
+                alert('No hay archivo seleccionado');
+                return;
+            }
+
+            document.getElementById('uploadSection').style.display = 'none';
+            document.getElementById('progressSection').classList.add('show');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const contenido = e.target.result;
+                procesarContenido(contenido);
+            };
+            reader.readAsText(archivoActual, 'ISO-8859-1');
+        }
+
+        function procesarContenido(contenido) {
+            let progreso = 0;
             const progressFill = document.getElementById('progressFill');
-            
-            procesando.style.display = 'block';
-            
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 20;
-                if (progress > 100) progress = 100;
-                
-                progressFill.style.width = progress + '%';
-                
-                if (progress >= 25) logContainer.innerHTML += 'Leyendo archivo CSV...<br>';
-                if (progress >= 50) logContainer.innerHTML += 'Procesando movimientos...<br>';
-                if (progress >= 75) logContainer.innerHTML += 'Buscando coincidencias...<br>';
-                if (progress >= 100) {
-                    logContainer.innerHTML += '✅ Procesamiento completado!<br>';
-                    logContainer.innerHTML += '📊 Resultados:<br>';
-                    logContainer.innerHTML += '  - Conciliados automáticamente: 47<br>';
-                    logContainer.innerHTML += '  - Pendientes de revisión: 8<br>';
-                    logContainer.innerHTML += '  - Con errores: 2<br>';
-                    clearInterval(interval);
+            const progressText = document.getElementById('progressText');
+
+            const intervalo = setInterval(() => {
+                progreso += 10;
+                progressFill.style.width = progreso + '%';
+                progressFill.textContent = progreso + '%';
+
+                if (progreso === 30) {
+                    progressText.textContent = 'Parseando archivo...';
+                } else if (progreso === 50) {
+                    progressText.textContent = 'Extrayendo datos...';
+                } else if (progreso === 70) {
+                    progressText.textContent = 'Buscando coincidencias...';
+                } else if (progreso === 90) {
+                    progressText.textContent = 'Verificando duplicados...';
+                } else if (progreso >= 100) {
+                    clearInterval(intervalo);
+                    progressText.textContent = 'Procesamiento completado!';
                     
                     setTimeout(() => {
-                        procesando.style.display = 'none';
-                        showTab('pendientes');
-                        // Actualizar tabs con nuevos números
-                        document.querySelector('.tab:nth-child(2)').innerHTML = '<i class="fas fa-clock"></i> Pendientes (8)';
-                        document.querySelector('.tab:nth-child(3)').innerHTML = '<i class="fas fa-check-circle"></i> Conciliados (47)';
-                        document.querySelector('.tab:nth-child(4)').innerHTML = '<i class="fas fa-exclamation-triangle"></i> Errores (2)';
-                    }, 2000);
+                        const movimientos = parsearArchivo(contenido);
+                        movimientosProcessados = movimientos;
+                        mostrarResultados();
+                    }, 500);
                 }
-            }, 200);
+            }, 300);
         }
-        
-        function conciliar(movimientoId, cuponId) {
-            alert(`Conciliando movimiento ${movimientoId} con cupón ${cuponId}`);
-            // Aquí iría la lógica de conciliación
+
+        function parsearArchivo(contenido) {
+            const lineas = contenido.split('\n');
+            const movimientos = [];
+
+            for (let i = 0; i < lineas.length; i++) {
+                const linea = lineas[i].trim();
+                
+                // Saltar líneas vacías y encabezados
+                if (!linea || linea.includes('Movimientos del') || linea.includes('Fecha\t') || linea.includes('Saldo al')) {
+                    continue;
+                }
+
+                // Parsear línea con tabuladores
+                const campos = linea.split('\t');
+                
+                if (campos.length >= 7) {
+                    const fecha = campos[0];
+                    const concepto = campos[5];
+                    const importeStr = campos[6];
+
+                    // Solo procesar transferencias recibidas (importes positivos)
+                    if (concepto && concepto.includes('Transferencia Recibida') && importeStr) {
+                        const importe = parseFloat(importeStr.replace(/\./g, '').replace(',', '.'));
+                        
+                        if (importe > 0) {
+                            const datosExtraidos = extraerDatosConcepto(concepto);
+                            const socioMatch = buscarSocioMatch(datosExtraidos);
+                            const duplicado = detectarDuplicado(socioMatch, fecha, importe, campos[4]);
+
+                            movimientos.push({
+                                id: movimientos.length + 1,
+                                fecha: fecha,
+                                concepto: concepto,
+                                monto: importe,
+                                referencia: campos[4] || '',
+                                apellidoExtracto: datosExtraidos.apellido,
+                                nombreExtracto: datosExtraidos.nombre,
+                                cuit: datosExtraidos.cuit,
+                                dni: datosExtraidos.dni,
+                                socioMatch: socioMatch,
+                                esDuplicado: duplicado !== null,
+                                duplicadoInfo: duplicado
+                            });
+                        }
+                    }
+                }
+            }
+
+            return movimientos;
         }
-        
-        function conciliarManual(movimientoId) {
-            const socioId = document.getElementById(`socio-${movimientoId}`).value;
-            if (socioId) {
-                alert(`Conciliando movimiento ${movimientoId} con socio ${socioId}`);
-                // Aquí iría la lógica de conciliación manual
+
+        function extraerDatosConcepto(concepto) {
+            let apellido = '';
+            let nombre = '';
+            let cuit = '';
+            let dni = '';
+
+            // Patrón 1: "De Apellido, Nombre / ... / CUIT"
+            let match = concepto.match(/De\s+([^,/]+),\s+([^/]+)\s*\/[^/]*\/\s*(\d+)/i);
+            
+            if (!match) {
+                // Patrón 2: "De Apellido/Nombre / ... / CUIT"
+                match = concepto.match(/De\s+([^/]+)\/([^/]+)\s*\/[^/]*\/\s*(\d+)/i);
+            }
+
+            if (match) {
+                apellido = match[1].trim();
+                nombre = match[2].trim();
+                cuit = match[3].trim();
+                
+                // Extraer DNI del CUIT (quitar primeros 2 dígitos y último dígito)
+                if (cuit.length === 11) {
+                    dni = cuit.substring(2, 10);
+                }
+            }
+
+            return { apellido, nombre, cuit, dni };
+        }
+
+        function calcularDigitoVerificador(tipoCuil, dni) {
+            // Calcula el dígito verificador del CUIL/CUIT argentino
+            const cuilBase = tipoCuil + dni;
+            const multiplicadores = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+            
+            let suma = 0;
+            for (let i = 0; i < 10; i++) {
+                suma += parseInt(cuilBase[i]) * multiplicadores[i];
+            }
+            
+            const resto = suma % 11;
+            const digitoVerificador = 11 - resto;
+            
+            if (digitoVerificador === 11) return '0';
+            if (digitoVerificador === 10) return '1'; // Caso especial, se usa tipo 23/24
+            return digitoVerificador.toString();
+        }
+
+        function generarPosiblesCUILs(dni) {
+            // Genera los posibles CUILs para un DNI dado
+            // 20: Hombres, 27: Mujeres, 23 y 24: casos especiales
+            const tipos = ['20', '27', '23', '24'];
+            const posiblesCUILs = [];
+            
+            for (const tipo of tipos) {
+                const digitoVerificador = calcularDigitoVerificador(tipo, dni);
+                posiblesCUILs.push(tipo + dni + digitoVerificador);
+            }
+            
+            return posiblesCUILs;
+        }
+
+        function buscarSocioMatch(datosExtraidos) {
+            const { apellido, nombre, cuit, dni } = datosExtraidos;
+
+            if (!apellido && !nombre && !cuit) {
+                return {
+                    socio: null,
+                    nivelMatch: 'sin-match',
+                    confianza: 0,
+                    descripcion: 'No se pudo extraer información del extracto'
+                };
+            }
+
+            // A. Match exacto por CUIT (socio tiene CUIT registrado)
+            if (cuit) {
+                const socio = sociosEjemplo.find(s => s.cuit === cuit);
+                if (socio) {
+                    return {
+                        socio: socio,
+                        nivelMatch: 'exacto-cuit',
+                        confianza: 100,
+                        descripcion: 'Match exacto por CUIT'
+                    };
+                }
+            }
+
+            // B. Match exacto por DNI (extrae DNI del CUIT del extracto)
+            if (dni) {
+                const socio = sociosEjemplo.find(s => s.dni === dni);
+                if (socio) {
+                    return {
+                        socio: socio,
+                        nivelMatch: 'exacto-dni',
+                        confianza: 95,
+                        descripcion: 'Match exacto por DNI'
+                    };
+                }
+            }
+
+            // C. Match bidireccional por CUIL generado
+            // Si el socio solo tiene DNI, genera posibles CUILs y compara con el CUIT del extracto
+            if (cuit) {
+                for (const socio of sociosEjemplo) {
+                    // Solo intentar si el socio tiene DNI pero no tiene CUIT, o para reforzar matching
+                    if (socio.dni) {
+                        const posiblesCUILs = generarPosiblesCUILs(socio.dni);
+                        if (posiblesCUILs.includes(cuit)) {
+                            return {
+                                socio: socio,
+                                nivelMatch: 'exacto-cuil-generado',
+                                confianza: 98,
+                                descripcion: 'Match por CUIL calculado desde DNI'
+                            };
+                        }
+                    }
+                }
+            }
+
+            // C. Match por apellido y nombre
+            if (apellido && nombre) {
+                const apellidoNorm = normalizar(apellido);
+                const nombreNorm = normalizar(nombre);
+                
+                const socio = sociosEjemplo.find(s => {
+                    const socioNombre = normalizar(s.nombre);
+                    return socioNombre.includes(apellidoNorm) && socioNombre.includes(nombreNorm);
+                });
+
+                if (socio) {
+                    return {
+                        socio: socio,
+                        nivelMatch: 'nombre-completo',
+                        confianza: 85,
+                        descripcion: 'Match por nombre y apellido'
+                    };
+                }
+            }
+
+            // D. Match por apellido similar
+            if (apellido) {
+                const apellidoNorm = normalizar(apellido);
+                let mejorMatch = null;
+                let mejorSimilitud = 0;
+
+                for (const socio of sociosEjemplo) {
+                    const socioApellido = socio.nombre.split(' ')[0]; // Primer palabra como apellido
+                    const similitud = calcularSimilitud(apellidoNorm, normalizar(socioApellido));
+                    
+                    if (similitud > 0.8 && similitud > mejorSimilitud) {
+                        mejorSimilitud = similitud;
+                        mejorMatch = socio;
+                    }
+                }
+
+                if (mejorMatch) {
+                    return {
+                        socio: mejorMatch,
+                        nivelMatch: 'apellido-similar',
+                        confianza: Math.round(mejorSimilitud * 100),
+                        descripcion: `Apellido similar (${Math.round(mejorSimilitud * 100)}% coincidencia)`
+                    };
+                }
+            }
+
+            // E. Sin match
+            return {
+                socio: null,
+                nivelMatch: 'sin-match',
+                confianza: 0,
+                descripcion: 'No se encontró coincidencia'
+            };
+        }
+
+        function detectarDuplicado(socioMatch, fecha, monto, referencia) {
+            if (!socioMatch.socio) return null;
+
+            const fechaMovimiento = parsearFecha(fecha);
+            
+            for (const pago of pagosRegistrados) {
+                if (pago.socioId === socioMatch.socio.id) {
+                    const diffDias = Math.abs((fechaMovimiento - pago.fecha) / (1000 * 60 * 60 * 24));
+                    
+                    if (diffDias <= 2 && Math.abs(pago.monto - monto) < 1) {
+                        return {
+                            fecha: pago.fecha,
+                            monto: pago.monto,
+                            referencia: pago.referencia
+                        };
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        function parsearFecha(fechaStr) {
+            // Formato: DD/MM/YYYY
+            const partes = fechaStr.split('/');
+            if (partes.length === 3) {
+                return new Date(partes[2], partes[1] - 1, partes[0]);
+            }
+            return new Date();
+        }
+
+        function normalizar(texto) {
+            return texto.toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .trim();
+        }
+
+        function calcularSimilitud(str1, str2) {
+            // Algoritmo de Levenshtein distance simplificado
+            const track = Array(str2.length + 1).fill(null).map(() =>
+                Array(str1.length + 1).fill(null));
+            
+            for (let i = 0; i <= str1.length; i++) track[0][i] = i;
+            for (let j = 0; j <= str2.length; j++) track[j][0] = j;
+            
+            for (let j = 1; j <= str2.length; j++) {
+                for (let i = 1; i <= str1.length; i++) {
+                    const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+                    track[j][i] = Math.min(
+                        track[j][i - 1] + 1,
+                        track[j - 1][i] + 1,
+                        track[j - 1][i - 1] + indicator
+                    );
+                }
+            }
+            
+            const distancia = track[str2.length][str1.length];
+            const maxLen = Math.max(str1.length, str2.length);
+            return 1 - distancia / maxLen;
+        }
+
+        function mostrarResultados() {
+            document.getElementById('progressSection').classList.remove('show');
+            document.getElementById('metricsGrid').style.display = 'grid';
+            document.getElementById('resultsSection').classList.add('show');
+
+            actualizarMetricas();
+            renderizarTablas();
+        }
+
+        function actualizarMetricas() {
+            const total = movimientosProcessados.length;
+            const exactos = movimientosProcessados.filter(m => 
+                m.socioMatch.nivelMatch === 'exacto-cuit' || 
+                m.socioMatch.nivelMatch === 'exacto-dni' || 
+                m.socioMatch.nivelMatch === 'exacto-cuil-generado'
+            );
+            const probables = movimientosProcessados.filter(m => 
+                m.socioMatch.nivelMatch === 'nombre-completo' || m.socioMatch.nivelMatch === 'apellido-similar'
+            );
+            const sinMatch = movimientosProcessados.filter(m => 
+                m.socioMatch.nivelMatch === 'sin-match'
+            );
+            const duplicados = movimientosProcessados.filter(m => m.esDuplicado);
+
+            document.getElementById('totalMovimientos').textContent = total;
+            document.getElementById('matchExacto').textContent = exactos.length;
+            document.getElementById('matchProbable').textContent = probables.length;
+            document.getElementById('sinMatch').textContent = sinMatch.length;
+            document.getElementById('duplicados').textContent = duplicados.length;
+
+            document.getElementById('montoMatchExacto').textContent = formatMoney(exactos.reduce((sum, m) => sum + m.monto, 0));
+            document.getElementById('montoMatchProbable').textContent = formatMoney(probables.reduce((sum, m) => sum + m.monto, 0));
+            document.getElementById('montoSinMatch').textContent = formatMoney(sinMatch.reduce((sum, m) => sum + m.monto, 0));
+            document.getElementById('montoDuplicados').textContent = formatMoney(duplicados.reduce((sum, m) => sum + m.monto, 0));
+
+            // Actualizar contadores en tabs
+            document.getElementById('countTodos').textContent = total;
+            document.getElementById('countExacto').textContent = exactos.length;
+            document.getElementById('countProbable').textContent = probables.length;
+            document.getElementById('countSinMatch').textContent = sinMatch.length;
+            document.getElementById('countDuplicados').textContent = duplicados.length;
+        }
+
+        function renderizarTablas() {
+            const exactos = movimientosProcessados.filter(m => 
+                m.socioMatch.nivelMatch === 'exacto-cuit' || 
+                m.socioMatch.nivelMatch === 'exacto-dni' || 
+                m.socioMatch.nivelMatch === 'exacto-cuil-generado'
+            );
+            const probables = movimientosProcessados.filter(m => 
+                m.socioMatch.nivelMatch === 'nombre-completo' || m.socioMatch.nivelMatch === 'apellido-similar'
+            );
+            const sinMatch = movimientosProcessados.filter(m => 
+                m.socioMatch.nivelMatch === 'sin-match'
+            );
+            const duplicados = movimientosProcessados.filter(m => m.esDuplicado);
+
+            renderizarTablaTodos();
+            renderizarTablaExacto(exactos);
+            renderizarTablaProbable(probables);
+            renderizarTablaSinMatch(sinMatch);
+            renderizarTablaDuplicados(duplicados);
+        }
+
+        function renderizarTablaTodos() {
+            const tbody = document.getElementById('tablaTodos');
+            tbody.innerHTML = '';
+
+            movimientosProcessados.forEach(mov => {
+                const tr = crearFilaMovimiento(mov, true);
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderizarTablaExacto(movimientos) {
+            const tbody = document.getElementById('tablaExacto');
+            tbody.innerHTML = '';
+
+            if (movimientos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 2rem; color: #6c757d;">No hay movimientos con match exacto</td></tr>';
+                return;
+            }
+
+            movimientos.forEach(mov => {
+                const tr = crearFilaMovimiento(mov, true);
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderizarTablaProbable(movimientos) {
+            const tbody = document.getElementById('tablaProbable');
+            tbody.innerHTML = '';
+
+            if (movimientos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 2rem; color: #6c757d;">No hay movimientos con match probable</td></tr>';
+                return;
+            }
+
+            movimientos.forEach(mov => {
+                const tr = crearFilaMovimiento(mov, true);
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderizarTablaSinMatch(movimientos) {
+            const tbody = document.getElementById('tablaSinMatch');
+            tbody.innerHTML = '';
+
+            if (movimientos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6c757d;">No hay movimientos sin match</td></tr>';
+                return;
+            }
+
+            movimientos.forEach(mov => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${mov.fecha}</td>
+                    <td>${mov.apellidoExtracto} ${mov.nombreExtracto}</td>
+                    <td>${mov.cuit || '-'}</td>
+                    <td class="amount">${formatMoney(mov.monto)}</td>
+                    <td>
+                        <select class="socio-selector" id="socio-${mov.id}">
+                            <option value="">Seleccionar socio...</option>
+                            ${sociosEjemplo.map(s => `<option value="${s.id}">${s.nombre} - DNI: ${s.dni}</option>`).join('')}
+                        </select>
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-success" onclick="asignarSocioManual(${mov.id})">
+                            <i class="fas fa-check"></i> Asignar
+                        </button>
+                        <button class="btn btn-sm btn-secondary" onclick="marcarNoSocio(${mov.id})">
+                            <i class="fas fa-times"></i> No es socio
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderizarTablaDuplicados(movimientos) {
+            const tbody = document.getElementById('tablaDuplicados');
+            tbody.innerHTML = '';
+
+            if (movimientos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: #6c757d;">No hay pagos duplicados</td></tr>';
+                return;
+            }
+
+            movimientos.forEach(mov => {
+                const tr = document.createElement('tr');
+                const fechaPrevio = mov.duplicadoInfo.fecha.toLocaleDateString('es-AR');
+                tr.innerHTML = `
+                    <td>${mov.fecha}</td>
+                    <td>${mov.apellidoExtracto} ${mov.nombreExtracto}</td>
+                    <td>${mov.cuit || '-'}</td>
+                    <td class="amount">${formatMoney(mov.monto)}</td>
+                    <td>${mov.socioMatch.socio ? mov.socioMatch.socio.nombre : '-'}</td>
+                    <td>${fechaPrevio} - ${formatMoney(mov.duplicadoInfo.monto)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info" onclick="verDetalleDuplicado(${mov.id})">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="descartarMovimiento(${mov.id})">
+                            <i class="fas fa-trash"></i> Descartar
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function crearFilaMovimiento(mov, incluirCheckbox) {
+            const tr = document.createElement('tr');
+            const badgeClass = getBadgeClass(mov.socioMatch.nivelMatch);
+            const badgeText = getBadgeText(mov.socioMatch.nivelMatch);
+            const estadoBadge = mov.esDuplicado ? '<span class="badge badge-duplicado">Ya Registrado</span>' : '<span class="badge" style="background: #cce5ff; color: #004085;">Nuevo</span>';
+
+            let html = '';
+            
+            if (incluirCheckbox && !mov.esDuplicado) {
+                html += `
+                    <td class="checkbox-cell">
+                        <input type="checkbox" class="mov-checkbox" data-id="${mov.id}" onchange="toggleMovimiento(${mov.id})">
+                    </td>
+                `;
+            } else if (incluirCheckbox) {
+                html += `<td class="checkbox-cell">-</td>`;
+            }
+
+            html += `
+                <td>${mov.fecha}</td>
+                <td>
+                    ${mov.apellidoExtracto} ${mov.nombreExtracto}
+                    <div class="match-details">CUIT/CUIL: ${mov.cuit || 'No disponible'}</div>
+                </td>
+                <td>${mov.cuit || '-'}</td>
+                <td class="amount">${formatMoney(mov.monto)}</td>
+                <td>
+                    ${mov.socioMatch.socio ? mov.socioMatch.socio.nombre : '-'}
+                    ${mov.socioMatch.socio ? `<div class="match-details">DNI: ${mov.socioMatch.socio.dni}</div>` : ''}
+                </td>
+                <td>
+                    <span class="badge ${badgeClass}">${badgeText}</span>
+                    <span class="confidence-indicator">${mov.socioMatch.confianza}%</span>
+                </td>
+            `;
+
+            if (incluirCheckbox) {
+                html += `<td>${estadoBadge}</td>`;
+            }
+
+            html += `
+                <td class="actions-cell">
+                    ${!mov.esDuplicado && mov.socioMatch.socio ? `
+                        <button class="btn btn-sm btn-success" onclick="confirmarPago(${mov.id})">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    ` : ''}
+                    <button class="btn btn-sm btn-info" onclick="verDetalle(${mov.id})">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    ${!mov.esDuplicado ? `
+                        <button class="btn btn-sm btn-warning" onclick="cambiarSocio(${mov.id})">
+                            <i class="fas fa-exchange-alt"></i>
+                        </button>
+                    ` : ''}
+                </td>
+            `;
+
+            tr.innerHTML = html;
+            return tr;
+        }
+
+        function getBadgeClass(nivelMatch) {
+            const classes = {
+                'exacto-cuit': 'badge-exacto-cuit',
+                'exacto-dni': 'badge-exacto-dni',
+                'exacto-cuil-generado': 'badge-exacto-cuit',
+                'nombre-completo': 'badge-nombre',
+                'apellido-similar': 'badge-apellido-similar',
+                'sin-match': 'badge-sin-match',
+                'no-socio': 'badge-no-socio'
+            };
+            return classes[nivelMatch] || 'badge-sin-match';
+        }
+
+        function getBadgeText(nivelMatch) {
+            const texts = {
+                'exacto-cuit': 'Match Exacto - CUIT',
+                'exacto-dni': 'Match Exacto - DNI',
+                'exacto-cuil-generado': 'Match Exacto - CUIL',
+                'nombre-completo': 'Match por Nombre',
+                'apellido-similar': 'Apellido Similar',
+                'sin-match': 'Sin Coincidencia',
+                'no-socio': 'No es Socio'
+            };
+            return texts[nivelMatch] || 'Sin Match';
+        }
+
+        function mostrarTab(tabName) {
+            // Remover clase active de todos los tabs y contenidos
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            // Activar tab y contenido seleccionado
+            event.target.closest('.tab').classList.add('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+        }
+
+        function toggleSelectAll() {
+            const checked = document.getElementById('selectAll').checked;
+            document.querySelectorAll('.mov-checkbox').forEach(cb => {
+                cb.checked = checked;
+                const id = parseInt(cb.dataset.id);
+                if (checked) {
+                    movimientosSeleccionados.add(id);
             } else {
-                alert('Por favor ingresa el número de socio');
+                    movimientosSeleccionados.delete(id);
+                }
+            });
+        }
+
+        function toggleSelectAllTab(tabName) {
+            const checked = event.target.checked;
+            const tbody = document.getElementById(`tabla${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
+            tbody.querySelectorAll('.mov-checkbox').forEach(cb => {
+                cb.checked = checked;
+                const id = parseInt(cb.dataset.id);
+                if (checked) {
+                    movimientosSeleccionados.add(id);
+                } else {
+                    movimientosSeleccionados.delete(id);
+                }
+            });
+        }
+
+        function toggleMovimiento(id) {
+            if (movimientosSeleccionados.has(id)) {
+                movimientosSeleccionados.delete(id);
+            } else {
+                movimientosSeleccionados.add(id);
             }
         }
-        
-        function marcarRevisado(movimientoId) {
-            alert(`Marcando movimiento ${movimientoId} como revisado`);
-            // Aquí iría la lógica para marcar como revisado
+
+        function confirmarMasivoExactos() {
+            const exactos = movimientosProcessados.filter(m => 
+                (m.socioMatch.nivelMatch === 'exacto-cuit' || 
+                 m.socioMatch.nivelMatch === 'exacto-dni' || 
+                 m.socioMatch.nivelMatch === 'exacto-cuil-generado') &&
+                !m.esDuplicado
+            );
+
+            if (exactos.length === 0) {
+                alert('No hay movimientos con match exacto para confirmar');
+                return;
+            }
+
+            const total = exactos.length;
+            const monto = exactos.reduce((sum, m) => sum + m.monto, 0);
+
+            document.getElementById('totalPagos').textContent = total;
+            document.getElementById('montoTotal').textContent = formatMoney(monto);
+            document.getElementById('modalConfirmacion').classList.add('show');
         }
-        
-        function verDetalles(movimientoId) {
-            alert(`Mostrando detalles del movimiento ${movimientoId}`);
-            // Aquí iría la lógica para mostrar detalles
+
+        function confirmarSeleccionados() {
+            if (movimientosSeleccionados.size === 0) {
+                alert('No hay movimientos seleccionados');
+                return;
+            }
+
+            const movimientos = Array.from(movimientosSeleccionados).map(id => 
+                movimientosProcessados.find(m => m.id === id)
+            ).filter(m => m && !m.esDuplicado && m.socioMatch.socio);
+
+            if (movimientos.length === 0) {
+                alert('Los movimientos seleccionados no se pueden confirmar');
+                return;
+            }
+
+            const total = movimientos.length;
+            const monto = movimientos.reduce((sum, m) => sum + m.monto, 0);
+
+            document.getElementById('totalPagos').textContent = total;
+            document.getElementById('montoTotal').textContent = formatMoney(monto);
+            document.getElementById('modalConfirmacion').classList.add('show');
+        }
+
+        function ejecutarConfirmacion() {
+            alert('Pagos confirmados exitosamente!\n\nEn una implementación real, aquí se registrarían los pagos en la base de datos y se actualizarían los estados de los cupones.');
+            cerrarModal('modalConfirmacion');
+        }
+
+        function confirmarPago(id) {
+            const mov = movimientosProcessados.find(m => m.id === id);
+            if (mov && mov.socioMatch.socio) {
+                alert(`Pago confirmado:\nSocio: ${mov.socioMatch.socio.nombre}\nMonto: ${formatMoney(mov.monto)}`);
+            }
+        }
+
+        function verDetalle(id) {
+            const mov = movimientosProcessados.find(m => m.id === id);
+            if (mov) {
+                let detalle = `Detalle del Movimiento #${id}\n\n`;
+                detalle += `Fecha: ${mov.fecha}\n`;
+                detalle += `Concepto: ${mov.concepto}\n`;
+                detalle += `Monto: ${formatMoney(mov.monto)}\n`;
+                detalle += `Referencia: ${mov.referencia}\n\n`;
+                detalle += `Datos del Extracto:\n`;
+                detalle += `  - Apellido: ${mov.apellidoExtracto}\n`;
+                detalle += `  - Nombre: ${mov.nombreExtracto}\n`;
+                detalle += `  - CUIT: ${mov.cuit || 'No disponible'}\n`;
+                detalle += `  - DNI: ${mov.dni || 'No disponible'}\n\n`;
+                
+                if (mov.socioMatch.socio) {
+                    detalle += `Socio Identificado:\n`;
+                    detalle += `  - Nombre: ${mov.socioMatch.socio.nombre}\n`;
+                    detalle += `  - DNI: ${mov.socioMatch.socio.dni}\n`;
+                    detalle += `  - CUIT: ${mov.socioMatch.socio.cuit}\n`;
+                    detalle += `  - Match: ${mov.socioMatch.descripcion}\n`;
+                    detalle += `  - Confianza: ${mov.socioMatch.confianza}%\n`;
+                } else {
+                    detalle += `No se encontró socio coincidente\n`;
+                }
+
+                if (mov.esDuplicado) {
+                    detalle += `\n⚠️ Ya existe un registro de este pago\n`;
+                    detalle += `Fecha anterior: ${mov.duplicadoInfo.fecha.toLocaleDateString('es-AR')}`;
+                }
+
+                alert(detalle);
+            }
+        }
+
+        function cambiarSocio(id) {
+            const nuevoSocioId = prompt('Ingrese el ID del socio correcto:');
+            if (nuevoSocioId) {
+                const socio = sociosEjemplo.find(s => s.id === parseInt(nuevoSocioId));
+                if (socio) {
+                    const mov = movimientosProcessados.find(m => m.id === id);
+                    if (mov) {
+                        mov.socioMatch = {
+                            socio: socio,
+                            nivelMatch: 'nombre-completo',
+                            confianza: 100,
+                            descripcion: 'Asignación manual'
+                        };
+                        renderizarTablas();
+                        actualizarMetricas();
+                        alert('Socio asignado correctamente');
+                    }
+                } else {
+                    alert('Socio no encontrado');
+                }
+            }
+        }
+
+        function asignarSocioManual(movId) {
+            const select = document.getElementById(`socio-${movId}`);
+            const socioId = parseInt(select.value);
+            
+            if (!socioId) {
+                alert('Por favor selecciona un socio');
+                return;
+            }
+
+            const socio = sociosEjemplo.find(s => s.id === socioId);
+            const mov = movimientosProcessados.find(m => m.id === movId);
+            
+            if (mov && socio) {
+                mov.socioMatch = {
+                    socio: socio,
+                    nivelMatch: 'nombre-completo',
+                    confianza: 100,
+                    descripcion: 'Asignación manual'
+                };
+                renderizarTablas();
+                actualizarMetricas();
+                alert(`Socio asignado: ${socio.nombre}`);
+            }
+        }
+
+        function marcarNoSocio(id) {
+            const mov = movimientosProcessados.find(m => m.id === id);
+            if (mov) {
+                mov.socioMatch = {
+                    socio: null,
+                    nivelMatch: 'no-socio',
+                    confianza: 0,
+                    descripcion: 'Marcado como no socio'
+                };
+                renderizarTablas();
+                actualizarMetricas();
+                alert('Movimiento marcado como "No es pago de socio"');
+            }
+        }
+
+        function verDetalleDuplicado(id) {
+            verDetalle(id);
+        }
+
+        function descartarMovimiento(id) {
+            if (confirm('¿Estás seguro de que deseas descartar este movimiento?')) {
+                const index = movimientosProcessados.findIndex(m => m.id === id);
+                if (index !== -1) {
+                    movimientosProcessados.splice(index, 1);
+                    renderizarTablas();
+                    actualizarMetricas();
+                    alert('Movimiento descartado');
+                }
+            }
+        }
+
+        function exportarResultados() {
+            alert('Funcionalidad de exportación a Excel/PDF\n\nEn una implementación real, aquí se generaría un archivo con todos los resultados de la conciliación.');
+        }
+
+        function descartarArchivo() {
+            if (confirm('¿Estás seguro de que deseas descartar todo el procesamiento?')) {
+                location.reload();
+            }
+        }
+
+        function cerrarModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+
+        // Utilidades
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        function formatMoney(amount) {
+            return '$' + amount.toLocaleString('es-AR', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+            }
         }
     </script>
 </body>

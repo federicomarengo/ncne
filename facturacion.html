@@ -96,6 +96,14 @@
             background: #c0392b;
         }
         
+        .btn-info {
+            background: #17a2b8;
+        }
+        
+        .btn-info:hover {
+            background: #138496;
+        }
+        
         .tabs {
             display: flex;
             background: white;
@@ -366,6 +374,9 @@
                 <a href="conciliacion.html" style="color: white; text-decoration: none;">
                     <i class="fas fa-exchange-alt"></i> Conciliación
                 </a>
+                <a href="configuracion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
             </div>
         </div>
     </div>
@@ -374,7 +385,7 @@
         <div class="page-header">
             <h1 class="page-title">Sistema de Facturación</h1>
             <div style="display: flex; gap: 1rem;">
-                <button class="btn btn-warning">
+                <button class="btn btn-warning" onclick="abrirGenerarCupones()">
                     <i class="fas fa-file-invoice"></i> Generar Cupones
                 </button>
                 <button class="btn btn-success" onclick="openPaymentModal()">
@@ -423,8 +434,8 @@
             <div class="tab" onclick="showTab('pagos')">
                 <i class="fas fa-credit-card"></i> Pagos
             </div>
-            <div class="tab" onclick="showTab('reportes')">
-                <i class="fas fa-chart-bar"></i> Reportes
+            <div class="tab" onclick="showTab('generar-cupones')">
+                <i class="fas fa-file-invoice-dollar"></i> Generar Cupones
             </div>
         </div>
 
@@ -477,11 +488,11 @@
                             <td><span class="status-badge status-paid">Pagado</span></td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <button class="btn btn-sm" style="background: #17a2b8;" title="Ver detalle">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-success">
-                                        <i class="fas fa-print"></i>
+                                    <button class="btn btn-sm btn-warning" title="Enviar por email">
+                                        <i class="fas fa-envelope"></i>
                                     </button>
                                 </div>
                             </td>
@@ -495,14 +506,11 @@
                             <td><span class="status-badge status-pending">Pendiente</span></td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <button class="btn btn-sm" style="background: #17a2b8;" title="Ver detalle">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-success">
-                                        <i class="fas fa-credit-card"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-warning">
-                                        <i class="fas fa-print"></i>
+                                    <button class="btn btn-sm btn-warning" title="Enviar por email">
+                                        <i class="fas fa-envelope"></i>
                                     </button>
                                 </div>
                             </td>
@@ -516,13 +524,10 @@
                             <td><span class="status-badge status-overdue">Vencido</span></td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <button class="btn btn-sm" style="background: #17a2b8;" title="Ver detalle">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-success">
-                                        <i class="fas fa-credit-card"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-danger">
+                                    <button class="btn btn-sm btn-warning" title="Enviar por email">
                                         <i class="fas fa-envelope"></i>
                                     </button>
                                 </div>
@@ -537,11 +542,11 @@
                             <td><span class="status-badge status-paid">Pagado</span></td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <button class="btn btn-sm" style="background: #17a2b8;" title="Ver detalle">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-success">
-                                        <i class="fas fa-print"></i>
+                                    <button class="btn btn-sm btn-warning" title="Enviar por email">
+                                        <i class="fas fa-envelope"></i>
                                     </button>
                                 </div>
                             </td>
@@ -555,14 +560,11 @@
                             <td><span class="status-badge status-pending">Pendiente</span></td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn btn-sm" style="background: #17a2b8;">
+                                    <button class="btn btn-sm" style="background: #17a2b8;" title="Ver detalle">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-success">
-                                        <i class="fas fa-credit-card"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-warning">
-                                        <i class="fas fa-print"></i>
+                                    <button class="btn btn-sm btn-warning" title="Enviar por email">
+                                        <i class="fas fa-envelope"></i>
                                     </button>
                                 </div>
                             </td>
@@ -653,22 +655,148 @@
             </div>
         </div>
 
-        <!-- Contenido de Reportes -->
-        <div id="reportes" class="tab-content" style="display: none;">
-            <div class="chart-container">
-                <h3 style="margin-bottom: 1rem;">Ingresos por Mes</h3>
-                <div class="chart-placeholder">
-                    <i class="fas fa-chart-line" style="font-size: 3rem; color: #3498db; margin-right: 1rem;"></i>
-                    Gráfico de ingresos mensuales
+        <!-- Contenido de Generar Cupones -->
+        <div id="generar-cupones" class="tab-content" style="display: none;">
+            <!-- Resumen de última generación -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="icon" style="color: #27ae60;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="amount" style="color: #27ae60;">Octubre 2025</div>
+                    <div class="label">Última Generación</div>
+                </div>
+                <div class="summary-card">
+                    <div class="icon" style="color: #3498db;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="amount" style="color: #3498db;">247</div>
+                    <div class="label">Cupones Generados</div>
+                </div>
+                <div class="summary-card">
+                    <div class="icon" style="color: #f39c12;">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="amount" style="color: #f39c12;">$11,115,000</div>
+                    <div class="label">Total Generado</div>
+                </div>
+                <div class="summary-card">
+                    <div class="icon" style="color: #17a2b8;">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <div class="amount" style="color: #17a2b8;">12</div>
+                    <div class="label">Generaciones este año</div>
                 </div>
             </div>
-            
-            <div class="chart-container">
-                <h3 style="margin-bottom: 1rem;">Estado de Cobranza</h3>
-                <div class="chart-placeholder">
-                    <i class="fas fa-chart-pie" style="font-size: 3rem; color: #e74c3c; margin-right: 1rem;"></i>
-                    Gráfico de estado de cobranza
-                </div>
+
+            <!-- Formulario de generación -->
+            <div class="table-container" style="padding: 2rem;">
+                <h2 style="margin-bottom: 1.5rem; color: #2c3e50;">
+                    <i class="fas fa-file-invoice"></i> Nueva Generación de Cupones
+                </h2>
+
+                <form id="formGeneracionCupones">
+                    <!-- Mes y Año -->
+                    <div class="filters">
+                        <div class="form-group">
+                            <label class="form-label">Mes a Generar</label>
+                            <select class="form-input" id="mesGeneracion" required>
+                                <option value="">Seleccionar mes</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Septiembre</option>
+                                <option value="10" selected>Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Año</label>
+                            <input type="number" class="form-input" id="anoGeneracion" 
+                                   value="2025" min="2020" max="2030" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Fecha de Vencimiento</label>
+                            <input type="date" class="form-input" id="fechaVencimiento" 
+                                   value="2025-10-20" required>
+                        </div>
+                    </div>
+
+                    <!-- Vista previa -->
+                    <div style="margin-top: 2rem;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h3 style="color: #2c3e50;">
+                                <i class="fas fa-eye"></i> Vista Previa
+                            </h3>
+                            <button type="button" class="btn btn-info" onclick="generarVistaPrevia()">
+                                <i class="fas fa-search"></i> Generar Vista Previa
+                            </button>
+                        </div>
+
+                        <div id="vistaPrevia" style="display: none;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                                <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #3498db;">
+                                    <div style="font-size: 0.85rem; color: #6c757d; margin-bottom: 0.5rem;">Socios a procesar:</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #2c3e50;" id="previewSocios">0</div>
+                                </div>
+                                <div style="background: #f8f9fa; padding: 1rem; border-radius: 8px; border-left: 4px solid #27ae60;">
+                                    <div style="font-size: 0.85rem; color: #6c757d; margin-bottom: 0.5rem;">Total estimado:</div>
+                                    <div style="font-size: 1.5rem; font-weight: bold; color: #27ae60;" id="previewTotal">$0</div>
+                                </div>
+                            </div>
+
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Socio</th>
+                                            <th>Items</th>
+                                            <th>Monto</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="previewTableBody">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Opciones avanzadas -->
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #dee2e6;">
+                        <h3 style="color: #2c3e50; margin-bottom: 1rem;">
+                            <i class="fas fa-cog"></i> Opciones Avanzadas
+                        </h3>
+                        <div class="filters">
+                            <div class="form-group">
+                                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                    <input type="checkbox" id="enviarEmail" checked style="width: auto;">
+                                    <span>Enviar cupones por email automáticamente</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #dee2e6;">
+                        <button type="button" class="btn" style="background: #6c757d;" onclick="cancelarGeneracion()">
+                            <i class="fas fa-times"></i> Cancelar
+                        </button>
+                        <button type="button" class="btn btn-warning" onclick="generarVistaPrevia()">
+                            <i class="fas fa-eye"></i> Vista Previa
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-file-invoice"></i> Generar Cupones
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -736,7 +864,7 @@
     </div>
 
     <script>
-        function showTab(tabName) {
+        function showTab(tabName, element) {
             // Ocultar todos los contenidos
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.style.display = 'none');
@@ -749,8 +877,78 @@
             document.getElementById(tabName).style.display = 'block';
             
             // Agregar clase active al tab seleccionado
-            event.target.classList.add('active');
+            if (element) {
+                element.classList.add('active');
+            } else if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // Buscar el tab correspondiente
+                const tabElements = document.querySelectorAll('.tab');
+                tabElements.forEach(tab => {
+                    if (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes(tabName)) {
+                        tab.classList.add('active');
+                    }
+                });
+            }
         }
+        
+        function generarVistaPrevia() {
+            // Simular vista previa
+            document.getElementById('vistaPrevia').style.display = 'block';
+            document.getElementById('previewSocios').textContent = '247';
+            document.getElementById('previewTotal').textContent = '$11,115,000';
+            
+            // Llenar tabla de ejemplo
+            const tbody = document.getElementById('previewTableBody');
+            tbody.innerHTML = `
+                <tr>
+                    <td>Juan Carlos Pérez</td>
+                    <td>Cuota mensual, Mantenimiento</td>
+                    <td class="amount">$45,000</td>
+                    <td><span class="status-badge status-paid">OK</span></td>
+                </tr>
+                <tr>
+                    <td>María Elena González</td>
+                    <td>Cuota mensual</td>
+                    <td class="amount">$30,000</td>
+                    <td><span class="status-badge status-paid">OK</span></td>
+                </tr>
+                <tr>
+                    <td>Carlos Alberto López</td>
+                    <td>Cuota mensual, Mantenimiento, Servicios</td>
+                    <td class="amount">$60,000</td>
+                    <td><span class="status-badge status-paid">OK</span></td>
+                </tr>
+                <tr>
+                    <td>Ana Beatriz Rodríguez</td>
+                    <td>Cuota mensual</td>
+                    <td class="amount">$45,000</td>
+                    <td><span class="status-badge status-pending">Con deuda</span></td>
+                </tr>
+            `;
+        }
+        
+        function abrirGenerarCupones() {
+            const tabElement = document.querySelector('.tab[onclick*="generar-cupones"]');
+            showTab('generar-cupones', tabElement);
+        }
+        
+        function cancelarGeneracion() {
+            document.getElementById('formGeneracionCupones').reset();
+            document.getElementById('vistaPrevia').style.display = 'none';
+            document.getElementById('mesGeneracion').value = '10';
+            document.getElementById('anoGeneracion').value = '2025';
+            document.getElementById('fechaVencimiento').value = '2025-10-20';
+        }
+        
+        // Manejar envío del formulario
+        document.getElementById('formGeneracionCupones').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (confirm('¿Está seguro que desea generar los cupones? Esta acción no se puede deshacer.')) {
+                alert('Generación de cupones iniciada. Esto puede tomar unos minutos...');
+                // Aquí iría la lógica real de generación
+            }
+        });
         
         function openPaymentModal() {
             document.getElementById('paymentModal').style.display = 'block';

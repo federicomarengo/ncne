@@ -270,6 +270,226 @@
         .form-row.full {
             grid-template-columns: 1fr;
         }
+
+        /* Estilos para modal de detalle de cuenta */
+        .modal-detail {
+            max-width: 1000px;
+            width: 95%;
+        }
+
+        .socio-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .socio-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .socio-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .socio-info-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.75rem;
+            border-radius: 6px;
+        }
+
+        .socio-info-label {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 0.25rem;
+        }
+
+        .socio-info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .resumen-cuenta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .resumen-card {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .resumen-card.deuda {
+            border-left-color: #e74c3c;
+        }
+
+        .resumen-card.pagado {
+            border-left-color: #27ae60;
+        }
+
+        .resumen-card.pendiente {
+            border-left-color: #f39c12;
+        }
+
+        .resumen-label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 0.5rem;
+        }
+
+        .resumen-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .filtros-movimientos {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filtro-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #dee2e6;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filtro-btn:hover {
+            border-color: #3498db;
+            color: #3498db;
+            background: #f8f9fa;
+        }
+
+        .filtro-btn.active {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+        }
+
+        .movimientos-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .movimiento-item {
+            transition: opacity 0.2s, transform 0.2s;
+        }
+
+        .movimiento-item.hidden {
+            display: none;
+        }
+
+        .movimiento-tipo {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .movimiento-tipo.cupon {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .movimiento-tipo.pago {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .movimiento-tipo.visita {
+            background: #cce5ff;
+            color: #004085;
+        }
+
+        .movimiento-item {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .movimiento-item:hover {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .movimiento-info {
+            flex: 1;
+        }
+
+        .movimiento-fecha {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+
+        .movimiento-concepto {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+
+        .movimiento-detalle {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .movimiento-monto {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .movimiento-monto.positivo {
+            color: #27ae60;
+        }
+
+        .movimiento-monto.negativo {
+            color: #e74c3c;
+        }
+
+        .movimiento-acciones {
+            display: flex;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
     </style>
 </head>
 <body>
@@ -297,6 +517,9 @@
                 <a href="conciliacion.html" style="color: white; text-decoration: none;">
                     <i class="fas fa-exchange-alt"></i> Conciliación
                 </a>
+                <a href="configuracion.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-cog"></i> Configuración
+                </a>
             </div>
         </div>
     </div>
@@ -309,6 +532,18 @@
             </button>
         </div>
 
+        <!-- Tabs para Socios y Visitas -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 2px solid #dee2e6;">
+            <button class="tab-btn active" id="tabSocios" onclick="mostrarTab('socios')" style="padding: 0.75rem 1.5rem; background: none; border: none; border-bottom: 3px solid #3498db; color: #3498db; font-weight: bold; cursor: pointer;">
+                <i class="fas fa-users"></i> Socios
+            </button>
+            <button class="tab-btn" id="tabVisitas" onclick="mostrarTab('visitas')" style="padding: 0.75rem 1.5rem; background: none; border: none; border-bottom: 3px solid transparent; color: #6c757d; cursor: pointer;">
+                <i class="fas fa-user-plus"></i> Visitas
+            </button>
+        </div>
+
+        <!-- Contenido de Socios -->
+        <div id="contenidoSocios">
         <!-- Filtros -->
         <div class="filters">
             <div class="filters-row">
@@ -329,26 +564,6 @@
                     <label class="form-label">Fecha de Ingreso</label>
                     <input type="date" class="form-input">
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Tipo de Membresía</label>
-                    <select class="form-input">
-                        <option value="">Todos los tipos</option>
-                        <option value="individual">Individual</option>
-                        <option value="familiar">Familiar</option>
-                        <option value="corporativa">Corporativa</option>
-                    </select>
-                </div>
-            </div>
-            <div style="display: flex; gap: 1rem;">
-                <button class="btn">
-                    <i class="fas fa-search"></i> Buscar
-                </button>
-                <button class="btn" style="background: #6c757d;">
-                    <i class="fas fa-undo"></i> Limpiar
-                </button>
-                <button class="btn" style="background: #17a2b8;">
-                    <i class="fas fa-download"></i> Exportar
-                </button>
             </div>
         </div>
 
@@ -364,24 +579,51 @@
                         <th>Teléfono</th>
                         <th>Estado</th>
                         <th>Fecha Ingreso</th>
-                        <th>Membresía</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Socios reales con embarcaciones (20 primeros de 59 total) -->
                     <tr>
-                        <td>001</td>
-                        <td>Juan Carlos Pérez</td>
-                        <td>20.123.456</td>
-                        <td>juan.perez@email.com</td>
-                        <td>+54 9 351 123-4567</td>
+                        <td>102</td>
+                        <td>Francisco Albuixech</td>
+                        <td>11347292</td>
+                        <td>francisco-albuixech@gmail.com</td>
+                        <td>0358-154197629</td>
+                        <td><span class="status-badge status-pending">Con Deuda</span></td>
+                        <td>01/01/2020</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalleCuenta(1, 'Francisco Albuixech', '11347292', 'francisco-albuixech@gmail.com', '0358-154197629', '01/01/2020')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #f39c12;" onclick="cargarVisitaSocio(1, 'Francisco Albuixech', '11347292')" title="Cargar Visita">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>106</td>
+                        <td>Eduardo Alfredo Benmergui</td>
+                        <td>11347552</td>
+                        <td>eaben@hotmail.com</td>
+                        <td>0358 5069334</td>
                         <td><span class="status-badge status-active">Activo</span></td>
-                        <td>15/03/2020</td>
-                        <td>Familiar</td>
+                        <td>01/01/2020</td>
                         <td>
                             <div class="action-buttons">
-                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalleCuenta(2, 'Eduardo Alfredo Benmergui', '11347552', 'eaben@hotmail.com', '0358 5069334', '01/01/2020')">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #f39c12;" onclick="cargarVisitaSocio(2, 'Eduardo Alfredo Benmergui', '11347552')" title="Cargar Visita">
+                                    <i class="fas fa-user-plus"></i>
                                 </button>
                                 <button class="btn btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -393,18 +635,45 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>002</td>
-                        <td>María Elena González</td>
-                        <td>27.987.654</td>
-                        <td>maria.gonzalez@email.com</td>
-                        <td>+54 9 351 987-6543</td>
+                        <td>108</td>
+                        <td>Guillermo Bertone</td>
+                        <td>11101555</td>
+                        <td>bertoneguillermo@arnet.com.ar</td>
+                        <td>03571-15695367</td>
+                        <td><span class="status-badge status-pending">Con Deuda</span></td>
+                        <td>01/01/2020</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalleCuenta(3, 'Guillermo Bertone', '11101555', 'bertoneguillermo@arnet.com.ar', '03571-15695367', '01/01/2020')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #f39c12;" onclick="cargarVisitaSocio(3, 'Guillermo Bertone', '11101555')" title="Cargar Visita">
+                                    <i class="fas fa-user-plus"></i>
+                                </button>
+                                <button class="btn btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>109</td>
+                        <td>Nicolás Boretti</td>
+                        <td>24158052</td>
+                        <td>nicolasboretti@hotmail.com</td>
+                        <td>0353-155690998</td>
                         <td><span class="status-badge status-active">Activo</span></td>
-                        <td>22/06/2019</td>
-                        <td>Individual</td>
+                        <td>01/01/2020</td>
                         <td>
                             <div class="action-buttons">
-                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalleCuenta(4, 'Nicolás Boretti', '24158052', 'nicolasboretti@hotmail.com', '0353-155690998', '01/01/2020')">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #f39c12;" onclick="cargarVisitaSocio(4, 'Nicolás Boretti', '24158052')" title="Cargar Visita">
+                                    <i class="fas fa-user-plus"></i>
                                 </button>
                                 <button class="btn btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -416,18 +685,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>003</td>
-                        <td>Carlos Alberto López</td>
-                        <td>23.456.789</td>
-                        <td>carlos.lopez@email.com</td>
-                        <td>+54 9 351 456-7890</td>
-                        <td><span class="status-badge status-pending">Pendiente</span></td>
-                        <td>10/10/2025</td>
-                        <td>Corporativa</td>
+                        <td>112</td>
+                        <td>Nicolás Francisco Buratovich</td>
+                        <td>21521385</td>
+                        <td>arynico@hotmail.com</td>
+                        <td>03571-15501427</td>
+                        <td><span class="status-badge status-pending">Con Deuda</span></td>
+                        <td>01/01/2020</td>
                         <td>
                             <div class="action-buttons">
-                                <button class="btn btn-sm" style="background: #17a2b8;">
+                                <button class="btn btn-sm" style="background: #17a2b8;" onclick="verDetalleCuenta(5, 'Nicolás Francisco Buratovich', '21521385', 'arynico@hotmail.com', '03571-15501427', '01/01/2020')">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #f39c12;" onclick="cargarVisitaSocio(5, 'Nicolás Francisco Buratovich', '21521385')" title="Cargar Visita">
+                                    <i class="fas fa-user-plus"></i>
                                 </button>
                                 <button class="btn btn-sm">
                                     <i class="fas fa-edit"></i>
@@ -438,52 +709,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>004</td>
-                        <td>Ana Beatriz Rodríguez</td>
-                        <td>25.789.123</td>
-                        <td>ana.rodriguez@email.com</td>
-                        <td>+54 9 351 789-1234</td>
-                        <td><span class="status-badge status-inactive">Inactivo</span></td>
-                        <td>05/02/2018</td>
-                        <td>Familiar</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn btn-sm" style="background: #17a2b8;">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>005</td>
-                        <td>Roberto Daniel Silva</td>
-                        <td>22.345.678</td>
-                        <td>roberto.silva@email.com</td>
-                        <td>+54 9 351 345-6789</td>
-                        <td><span class="status-badge status-active">Activo</span></td>
-                        <td>18/09/2021</td>
-                        <td>Individual</td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn btn-sm" style="background: #17a2b8;">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                                <button class="btn btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    <!-- Los 15 socios restantes se podrían agregar aquí -->
                 </tbody>
             </table>
         </div>
@@ -497,6 +723,67 @@
             <button>...</button>
             <button>15</button>
             <button><i class="fas fa-chevron-right"></i></button>
+        </div>
+        </div>
+
+        <!-- Contenido de Visitas -->
+        <div id="contenidoVisitas" style="display: none;">
+            <!-- Filtros de visitas -->
+            <div class="filters">
+                <div class="filters-row">
+                    <div class="form-group">
+                        <label class="form-label">Buscar Socio</label>
+                        <input type="text" class="form-input" id="filtroSocioVisita" placeholder="Nombre o DNI del socio..." onkeyup="filtrarVisitas()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mes</label>
+                        <select class="form-input" id="filtroMesVisita" onchange="filtrarVisitas()">
+                            <option value="">Todos los meses</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Septiembre</option>
+                            <option value="10" selected>Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Estado</label>
+                        <select class="form-input" id="filtroEstadoVisita" onchange="filtrarVisitas()">
+                            <option value="">Todos los estados</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="con_cupon">Con cupón generado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de visitas -->
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Socio</th>
+                            <th>Fecha</th>
+                            <th>Cantidad</th>
+                            <th>Monto</th>
+                            <th>Estado</th>
+                            <th>Fecha Cupón</th>
+                            <th>Observaciones</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaVisitasBody">
+                        <!-- Se llena dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -543,15 +830,6 @@
                         <label class="form-label">Dirección</label>
                         <input type="text" class="form-input" placeholder="Dirección completa">
                     </div>
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Membresía</label>
-                        <select class="form-input">
-                            <option value="">Seleccionar tipo</option>
-                            <option value="individual">Individual</option>
-                            <option value="familiar">Familiar</option>
-                            <option value="corporativa">Corporativa</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="form-row full">
                     <div class="form-group">
@@ -571,6 +849,386 @@
         </div>
     </div>
 
+    <!-- Modal para detalle de cuenta del socio -->
+    <div id="modalDetalle" class="modal">
+        <div class="modal-content modal-detail">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalle de Cuenta</h2>
+                <button class="close" onclick="closeModalDetalle()">&times;</button>
+            </div>
+
+            <!-- Header del socio -->
+            <div class="socio-header">
+                <h3 id="socioNombreDetalle">Juan Carlos Pérez</h3>
+                <div class="socio-info-grid">
+                    <div class="socio-info-item">
+                        <div class="socio-info-label">DNI</div>
+                        <div class="socio-info-value" id="socioDNIDetalle">20.123.456</div>
+                    </div>
+                    <div class="socio-info-item">
+                        <div class="socio-info-label">Email</div>
+                        <div class="socio-info-value" id="socioEmailDetalle">juan.perez@email.com</div>
+                    </div>
+                    <div class="socio-info-item">
+                        <div class="socio-info-label">Teléfono</div>
+                        <div class="socio-info-value" id="socioTelefonoDetalle">+54 9 351 123-4567</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumen de cuenta -->
+            <div class="resumen-cuenta">
+                <div class="resumen-card deuda">
+                    <div class="resumen-label">Deuda Total</div>
+                    <div class="resumen-value">$135,000</div>
+                </div>
+                <div class="resumen-card pagado">
+                    <div class="resumen-label">Total Pagado</div>
+                    <div class="resumen-value">$540,000</div>
+                </div>
+                <div class="resumen-card pendiente">
+                    <div class="resumen-label">Cupones Pendientes</div>
+                    <div class="resumen-value">3</div>
+                </div>
+            </div>
+
+            <!-- Filtros de movimientos -->
+            <div class="filtros-movimientos">
+                <button class="filtro-btn active" onclick="filtrarMovimientos('todos', this)">
+                    <i class="fas fa-list"></i> Todos
+                </button>
+                <button class="filtro-btn" onclick="filtrarMovimientos('cupon', this)">
+                    <i class="fas fa-receipt"></i> Cupones
+                </button>
+                <button class="filtro-btn" onclick="filtrarMovimientos('pago', this)">
+                    <i class="fas fa-credit-card"></i> Pagos
+                </button>
+                <button class="filtro-btn" onclick="filtrarMovimientos('visita', this)">
+                    <i class="fas fa-users"></i> Visitas
+                </button>
+            </div>
+
+            <!-- Lista de movimientos (histórico) -->
+            <div class="movimientos-container">
+                <!-- Cupón - Octubre 2025 -->
+                <div class="movimiento-item" data-tipo="cupon">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/10/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo cupon">CUPÓN</span>
+                            Cupón Mensual - Octubre 2025
+                        </div>
+                        <div class="movimiento-detalle">Cupón N° 00001295 - Vence: 20/10/2025</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-pending">Pendiente</span>
+                    </div>
+                </div>
+
+                <!-- Visita - Octubre 2025 -->
+                <div class="movimiento-item" data-tipo="visita">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">05/10/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo visita">VISITA</span>
+                            Cobro de Visita - Invitado
+                        </div>
+                        <div class="movimiento-detalle">2 visitantes - María González y Juan González</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$8,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-pending">Pendiente</span>
+                    </div>
+                </div>
+
+                <!-- Visita - Septiembre 2025 -->
+                <div class="movimiento-item" data-tipo="visita">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">28/09/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo visita">VISITA</span>
+                            Cobro de Visita - Invitado
+                        </div>
+                        <div class="movimiento-detalle">1 visitante - Carlos Pérez</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$4,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-active">Pagado</span>
+                    </div>
+                </div>
+
+                <!-- Cupón - Septiembre 2025 -->
+                <div class="movimiento-item" data-tipo="cupon">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/09/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo cupon">CUPÓN</span>
+                            Cupón Mensual - Septiembre 2025
+                        </div>
+                        <div class="movimiento-detalle">Cupón N° 00001294 - Vence: 20/09/2025</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-pending">Pendiente</span>
+                    </div>
+                </div>
+
+                <!-- Visita - Septiembre 2025 -->
+                <div class="movimiento-item" data-tipo="visita">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/09/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo visita">VISITA</span>
+                            Cobro de Visita - Invitado
+                        </div>
+                        <div class="movimiento-detalle">3 visitantes - Familia Rodríguez</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$12,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-active">Pagado</span>
+                    </div>
+                </div>
+
+                <!-- Cupón - Agosto 2025 -->
+                <div class="movimiento-item" data-tipo="cupon">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/08/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo cupon">CUPÓN</span>
+                            Cupón Mensual - Agosto 2025
+                        </div>
+                        <div class="movimiento-detalle">Cupón N° 00001293 - Vence: 20/08/2025</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-pending">Pendiente</span>
+                    </div>
+                </div>
+
+                <!-- Visita - Agosto 2025 -->
+                <div class="movimiento-item" data-tipo="visita">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">02/08/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo visita">VISITA</span>
+                            Cobro de Visita - Invitado
+                        </div>
+                        <div class="movimiento-detalle">1 visitante - Ana Silva</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$4,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-active">Pagado</span>
+                    </div>
+                </div>
+
+                <!-- Pago - Julio 2025 -->
+                <div class="movimiento-item" data-tipo="pago">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">10/07/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo pago">PAGO</span>
+                            Pago de Cupón N° 00001292
+                        </div>
+                        <div class="movimiento-detalle">Transferencia bancaria - Conciliado</div>
+                    </div>
+                    <div class="movimiento-monto positivo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <button class="btn btn-sm" style="background: #17a2b8;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cupón - Julio 2025 -->
+                <div class="movimiento-item" data-tipo="cupon">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/07/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo cupon">CUPÓN</span>
+                            Cupón Mensual - Julio 2025
+                        </div>
+                        <div class="movimiento-detalle">Cupón N° 00001292 - Pagado</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-active">Pagado</span>
+                    </div>
+                </div>
+
+                <!-- Pago - Junio 2025 -->
+                <div class="movimiento-item" data-tipo="pago">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">12/06/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo pago">PAGO</span>
+                            Pago de Cupón N° 00001291
+                        </div>
+                        <div class="movimiento-detalle">Transferencia bancaria - Conciliado</div>
+                    </div>
+                    <div class="movimiento-monto positivo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <button class="btn btn-sm" style="background: #17a2b8;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cupón - Junio 2025 -->
+                <div class="movimiento-item" data-tipo="cupon">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/06/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo cupon">CUPÓN</span>
+                            Cupón Mensual - Junio 2025
+                        </div>
+                        <div class="movimiento-detalle">Cupón N° 00001291 - Pagado</div>
+                    </div>
+                    <div class="movimiento-monto negativo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <span class="status-badge status-active">Pagado</span>
+                    </div>
+                </div>
+
+                <!-- Pago - Mayo 2025 -->
+                <div class="movimiento-item" data-tipo="pago">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">15/05/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo pago">PAGO</span>
+                            Pago de Cupón N° 00001290
+                        </div>
+                        <div class="movimiento-detalle">Efectivo - Recibo N° 0001234</div>
+                    </div>
+                    <div class="movimiento-monto positivo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <button class="btn btn-sm" style="background: #17a2b8;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pago - Abril 2025 -->
+                <div class="movimiento-item" data-tipo="pago">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">20/04/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo pago">PAGO</span>
+                            Pago de Cupón N° 00001289
+                        </div>
+                        <div class="movimiento-detalle">Cheque N° 123456 - Banco Santander</div>
+                    </div>
+                    <div class="movimiento-monto positivo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <button class="btn btn-sm" style="background: #17a2b8;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pago - Marzo 2025 -->
+                <div class="movimiento-item" data-tipo="pago">
+                    <div class="movimiento-info">
+                        <div class="movimiento-fecha">18/03/2025</div>
+                        <div class="movimiento-concepto">
+                            <span class="movimiento-tipo pago">PAGO</span>
+                            Pago de Cupón N° 00001288
+                        </div>
+                        <div class="movimiento-detalle">Transferencia bancaria - Conciliado</div>
+                    </div>
+                    <div class="movimiento-monto positivo">$45,000</div>
+                    <div class="movimiento-acciones">
+                        <button class="btn btn-sm" style="background: #17a2b8;">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #dee2e6;">
+                <button class="btn" style="background: #f39c12;" onclick="openModalVisitaDesdeDetalle()">
+                    <i class="fas fa-user-plus"></i> Cargar Visita
+                </button>
+                <button class="btn" style="background: #17a2b8;">
+                    <i class="fas fa-file-pdf"></i> Exportar Resumen
+                </button>
+                <button class="btn btn-success">
+                    <i class="fas fa-receipt"></i> Generar Cupón
+                </button>
+                <button class="btn" style="background: #6c757d;" onclick="closeModalDetalle()">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para cargar visita -->
+    <div id="modalVisita" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Cargar Visita</h2>
+                <button class="close" onclick="closeModalVisita()">&times;</button>
+            </div>
+            <form id="formVisita" onsubmit="guardarVisita(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Socio <span style="color: red;">*</span></label>
+                        <input type="text" class="form-input" id="socioVisita" placeholder="Buscar socio por nombre o DNI..." required>
+                        <input type="hidden" id="socioVisitaId">
+                        <div id="socioVisitaList" style="display: none; position: absolute; background: white; border: 1px solid #ddd; border-radius: 6px; max-height: 200px; overflow-y: auto; z-index: 1000; width: 100%; margin-top: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></div>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Fecha de la Visita <span style="color: red;">*</span></label>
+                        <input type="date" class="form-input" id="fechaVisita" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cantidad de Visitas <span style="color: red;">*</span></label>
+                        <input type="number" class="form-input" id="cantidadVisitas" min="1" value="1" required onchange="calcularTotalVisita()">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Costo por Visita</label>
+                        <input type="text" class="form-input" id="costoVisita" value="$5,000" readonly style="background: #f8f9fa; cursor: not-allowed;">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total</label>
+                        <input type="text" class="form-input" id="totalVisita" value="$5,000" readonly style="background: #f8f9fa; font-weight: bold; font-size: 1.1rem; cursor: not-allowed;">
+                    </div>
+                </div>
+
+                <div id="resumenVisitasMes" style="background: #e8f4f8; padding: 1rem; border-radius: 8px; margin: 1rem 0; display: none;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-info-circle" style="color: #17a2b8;"></i>
+                        <strong style="color: #2c3e50;">Resumen del Mes</strong>
+                    </div>
+                    <div id="resumenVisitasMesContent" style="color: #495057; font-size: 0.9rem;"></div>
+                </div>
+
+                <div class="form-row full">
+                    <div class="form-group">
+                        <label class="form-label">Observaciones (Opcional)</label>
+                        <textarea class="form-input" id="observacionesVisita" rows="3" placeholder="Notas adicionales sobre la visita..."></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #dee2e6;">
+                    <button type="button" class="btn" style="background: #6c757d;" onclick="closeModalVisita()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Guardar Visita
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         function openModal() {
             document.getElementById('modal').style.display = 'block';
@@ -579,14 +1237,520 @@
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
         }
+
+        function verDetalleCuenta(id, nombre, dni, email, telefono, fechaIngreso) {
+            document.getElementById('socioNombreDetalle').textContent = nombre;
+            document.getElementById('socioDNIDetalle').textContent = dni;
+            document.getElementById('socioEmailDetalle').textContent = email;
+            document.getElementById('socioTelefonoDetalle').textContent = telefono;
+            document.getElementById('modalDetalle').style.display = 'block';
+            // Resetear filtro a "Todos"
+            const todosBtn = document.querySelector('#modalDetalle .filtro-btn');
+            filtrarMovimientos('todos', todosBtn);
+        }
+
+        function closeModalDetalle() {
+            document.getElementById('modalDetalle').style.display = 'none';
+        }
+
+        function filtrarMovimientos(tipo, btnElement) {
+            // Actualizar botones de filtro
+            const filtros = document.querySelectorAll('#modalDetalle .filtro-btn');
+            filtros.forEach(btn => btn.classList.remove('active'));
+            
+            // Activar el botón seleccionado
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+            
+            // Obtener todos los movimientos
+            const movimientos = document.querySelectorAll('#modalDetalle .movimiento-item');
+            
+            // Filtrar movimientos
+            movimientos.forEach(movimiento => {
+                if (tipo === 'todos') {
+                    movimiento.classList.remove('hidden');
+                } else {
+                    const tipoMovimiento = movimiento.getAttribute('data-tipo');
+                    if (tipoMovimiento === tipo) {
+                        movimiento.classList.remove('hidden');
+                    } else {
+                        movimiento.classList.add('hidden');
+                    }
+                }
+            });
+        }
         
         // Cerrar modal al hacer clic fuera
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
+            const modalDetalle = document.getElementById('modalDetalle');
+            const modalVisita = document.getElementById('modalVisita');
             if (event.target === modal) {
                 closeModal();
             }
+            if (event.target === modalDetalle) {
+                closeModalDetalle();
+            }
+            if (event.target === modalVisita) {
+                closeModalVisita();
+            }
         }
+
+        // Funciones para gestión de visitas
+        // Función para obtener configuración
+        function getConfig() {
+            const config = JSON.parse(localStorage.getItem('clubConfig'));
+            if (!config) {
+                return {
+                    costos: { visita: 5000 }
+                };
+            }
+            return config;
+        }
+        
+        const COSTO_VISITA = getConfig().costos.visita || 5000; // Costo configurado por visita
+
+        // Datos reales de socios con embarcaciones (59 socios activos)
+        const sociosEjemplo = [
+            { id: 1, numero: '102', nombre: 'Francisco Albuixech', dni: '11347292', email: 'francisco-albuixech@gmail.com', telefono: '0358-154197629', estado: 'Con Deuda', embarcaciones: 'MAÑANA, WHITE WIND' },
+            { id: 2, numero: '106', nombre: 'Eduardo Alfredo Benmergui', dni: '11347552', email: 'eaben@hotmail.com', telefono: '0358 5069334', estado: 'Activo', embarcaciones: 'MAIDEN' },
+            { id: 3, numero: '108', nombre: 'Guillermo Bertone', dni: '11101555', email: 'bertoneguillermo@arnet.com.ar', telefono: '03571-15695367', estado: 'Con Deuda', embarcaciones: 'LUNATIK' },
+            { id: 4, numero: '109', nombre: 'Nicolás Boretti', dni: '24158052', email: 'nicolasboretti@hotmail.com', telefono: '0353-155690998', estado: 'Activo', embarcaciones: 'ALLEGRO' },
+            { id: 5, numero: '112', nombre: 'Nicolás Francisco Buratovich', dni: '21521385', email: 'arynico@hotmail.com', telefono: '03571-15501427', estado: 'Con Deuda', embarcaciones: 'SHANON' },
+            { id: 6, numero: '114', nombre: 'Martín Cali', dni: '20804369', email: 'martincalimotos@gmail.com', telefono: '0353-154020510', estado: 'Con Deuda', embarcaciones: 'R17, ARCO IRIS' },
+            { id: 7, numero: '118', nombre: 'Jorge Chiappero', dni: '14050673', email: 'jorgechiappero@arnet.com.ar', telefono: '0353-15488259', estado: 'Activo', embarcaciones: 'OSKY' },
+            { id: 8, numero: '119', nombre: 'Yanina Coggiola', dni: '7960739', email: 'yacoyola@gmail.com', telefono: '3534783960', estado: 'Activo', embarcaciones: 'SIRIRI' },
+            { id: 9, numero: '120', nombre: 'Oscar Daniel Costa', dni: '11527405', email: 'arquitecto.oscarcosta@gmail.com', telefono: '3535632891', estado: 'Activo', embarcaciones: 'VIKING VI' },
+            { id: 10, numero: '122', nombre: 'Victor Raúl Crisafulli', dni: '10377388', email: 'soleats86@gmail.com', telefono: '0353-155282073', estado: 'Con Deuda', embarcaciones: 'KINIBALU, BRAVA' },
+            { id: 11, numero: '124', nombre: 'Alberto Ramón Fenoglio', dni: '7870473', email: 'info@estudiomacagno.com.ar', telefono: '0353-154025570', estado: 'Con Deuda', embarcaciones: 'IMPOSIBLE' },
+            { id: 12, numero: '129', nombre: 'José María Garrido', dni: '12367882', email: 'garrido.josemaria@hotmail.com', telefono: '0353-154292305', estado: 'Activo', embarcaciones: 'SAN JOSE' },
+            { id: 13, numero: '132', nombre: 'Alfredo Maisterrena', dni: '12082152', email: 'amaiste@yahoo.com.ar', telefono: '03583-15595689', estado: 'Activo', embarcaciones: 'ANTARES' },
+            { id: 14, numero: '137', nombre: 'Marcelo Otero', dni: '17105789', email: 'marcelo_otero@arnetbiz.com.ar', telefono: '0358-156021399', estado: 'Activo', embarcaciones: 'COCODRILO' },
+            { id: 15, numero: '144', nombre: 'Daniel Simari', dni: '14986425', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'CABURÉ' },
+            { id: 16, numero: '147', nombre: 'Enrique Franco Vollenweider', dni: '08008726', email: 'enriquevollen@yahoo.com', telefono: '0358-154026777', estado: 'Con Deuda', embarcaciones: 'HECHIZO' },
+            { id: 17, numero: '168', nombre: 'Alonso Victor José Bocos', dni: '93179353', email: 'None', telefono: '03571-15537105', estado: 'Con Deuda', embarcaciones: 'EUBALAENA' },
+            { id: 18, numero: '176', nombre: 'Julio Esteban Kohan', dni: '24522218', email: 'juliokohan@arnet.com.ar', telefono: '03564-15414200', estado: 'Activo', embarcaciones: 'REINA DE LA PAZ, LANCHA NUEVA' },
+            { id: 19, numero: '184', nombre: 'Hernán Pezzutti', dni: '16530230', email: 'hpezzutti@intramed.net', telefono: '0358-154166822', estado: 'Con Deuda', embarcaciones: 'BUHO' },
+            { id: 20, numero: '187', nombre: 'Cristian Alejandro Riolfi', dni: '21396463', email: 'riolfibuceo@yahoo.com.ar', telefono: '0351-155600277', estado: 'Activo', embarcaciones: 'EUZKADY' },
+            { id: 21, numero: '193', nombre: 'Horacio Pedro Vazquez', dni: '13015669', email: 'normamarchisio@hotmail.com', telefono: '0353-154209640', estado: 'Activo', embarcaciones: 'JUNCAL' },
+            { id: 22, numero: '196', nombre: 'Guillermo Fumarco', dni: '12144293', email: 'gfumarco@hotmail.com', telefono: '0358-154022810', estado: 'Con Deuda', embarcaciones: 'TUKAN' },
+            { id: 23, numero: '198', nombre: 'Daniel Eugenio Leunda', dni: '13537606', email: 'ingenia.controldeacceso@gmail.com', telefono: '0351-152350673', estado: 'Con Deuda', embarcaciones: 'TU' },
+            { id: 24, numero: '200', nombre: 'Andres Angel Otermin', dni: '6', email: 'aotermin1@gmail.com', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'LANCHA NUEVA' },
+            { id: 25, numero: '202', nombre: 'Claudia Susana Nicola', dni: '13956641', email: 'clau1400@hotmail.com.ar', telefono: '0351-155946633', estado: 'Con Deuda', embarcaciones: 'PERLA NEGRA, AURORA' },
+            { id: 26, numero: '212', nombre: 'Caracol Supermercados', dni: '3066878451', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'LUZ DE LUNA' },
+            { id: 27, numero: '213', nombre: 'FEYRO S.A. Comercial', dni: '30537200291', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'OLODUM' },
+            { id: 28, numero: '214', nombre: 'Rubén Jesus Romero', dni: '20136393740', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'INGRID IV' },
+            { id: 29, numero: '215', nombre: 'Moroni Ferretería', dni: '20115626345', email: 'None', telefono: '03546-497696', estado: 'Activo', embarcaciones: 'ALUMINE' },
+            { id: 30, numero: '221', nombre: 'Vicente Ramón Romero', dni: '20127496383', email: 'None', telefono: '03546-497225', estado: 'Con Deuda', embarcaciones: 'MAMALU II' },
+            { id: 31, numero: '233', nombre: 'Argentina SRL Wal-Mart', dni: '30678138300', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'CALIPSO II' },
+            { id: 32, numero: '239', nombre: 'Font Metal Ferreteria', dni: '20110763532', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'Nombre desconocido' },
+            { id: 33, numero: '243', nombre: 'Caceres y Estela Beltramo Soc Elsa', dni: '30708301236', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'GEORGINA' },
+            { id: 34, numero: '245', nombre: 'Aquanautica', dni: '20114024660', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'LILAS' },
+            { id: 35, numero: '247', nombre: 'Irupe II Vivero', dni: '27264048538', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'WHY NOT' },
+            { id: 36, numero: '252', nombre: 'S.R.L. Hercons', dni: '30710562888', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'LITTLE WIND' },
+            { id: 37, numero: '253', nombre: 'Embalse Agroveterinaria', dni: '20276983181', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'CHAMULLITO' },
+            { id: 38, numero: '254', nombre: 'Profecional de Ciencias Economic Consejo', dni: '11212121', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'BLUES' },
+            { id: 39, numero: '331', nombre: 'Villa del Dique Coop.', dni: '30545710443', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'SALVAJE' },
+            { id: 40, numero: '333', nombre: '', dni: '', email: '', telefono: '', estado: 'Activo', embarcaciones: 'CAPITAN VENENO' },
+            { id: 41, numero: '334', nombre: 'Express BUSPACK', dni: '30707215689', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'ARAMENDI' },
+            { id: 42, numero: '342', nombre: 'Raul Daniele', dni: '2009', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'PAMPA' },
+            { id: 43, numero: '343', nombre: 'pilas Todo', dni: '2010', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'ENJOY' },
+            { id: 44, numero: '344', nombre: 'emporio del bulon El', dni: '2016', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'SEASON' },
+            { id: 45, numero: '348', nombre: 'ferreteria La', dni: '2021', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'ARETHVSA' },
+            { id: 46, numero: '353', nombre: 'cargo Via', dni: '2028', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'EL CHIQUITIN' },
+            { id: 47, numero: '355', nombre: 'oscar Fernandez', dni: '2027', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'SOARING' },
+            { id: 48, numero: '356', nombre: 'Ecowin', dni: '2030', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'ATIS' },
+            { id: 49, numero: '358', nombre: 'Vaca Asociacion Civil La', dni: '2032', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'Nigth Runner' },
+            { id: 50, numero: '359', nombre: 'Norberto Gustavo Farias', dni: '2035', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'Cobra' },
+            { id: 51, numero: '362', nombre: 'Hernan Argente', dni: '2040', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'Pampero' },
+            { id: 52, numero: '364', nombre: 'y cia Donzelli', dni: '2042', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'CIMARRON' },
+            { id: 53, numero: '367', nombre: 'Walter Lucero', dni: '2045', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'ARACA' },
+            { id: 54, numero: '371', nombre: 'Eduardo Castro', dni: '2049', email: 'None', telefono: 'None', estado: 'Activo', embarcaciones: 'Georgina 2' },
+            { id: 55, numero: '372', nombre: 'Ariel Zuñiga', dni: '2050', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'Arenys' },
+            { id: 56, numero: '373', nombre: 'Pedro Spizzamigglio', dni: '2051', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'OSIRIS' },
+            { id: 57, numero: '374', nombre: 'Nahuel Soliz', dni: '2052', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'LIBERTAD' },
+            { id: 58, numero: '378', nombre: 'SRL Dattatec', dni: '30710173652', email: 'None', telefono: 'None', estado: 'Con Deuda', embarcaciones: 'HIDRA' },
+            { id: 59, numero: '380', nombre: 'Guerrero Horacio Martinez', dni: '13699058', email: 'mariagrandval@gmail.com', telefono: '11 56265780', estado: 'Con Deuda', embarcaciones: 'XEBEC' }
+        ];
+
+        // Visitas de ejemplo (en producción vendría del backend)
+        let visitasEjemplo = [
+            { id: 1, socioId: 1, socioNombre: 'Juan Carlos Pérez', fecha: '2025-10-05', cantidad: 2, monto: 10000, estado: 'pendiente', observaciones: '' },
+            { id: 2, socioId: 1, socioNombre: 'Juan Carlos Pérez', fecha: '2025-10-12', cantidad: 1, monto: 5000, estado: 'pendiente', observaciones: '' },
+            { id: 3, socioId: 2, socioNombre: 'María Elena González', fecha: '2025-10-08', cantidad: 3, monto: 15000, estado: 'con_cupon', fechaCupon: '2025-10-15', observaciones: '' }
+        ];
+
+        function openModalVisita() {
+            document.getElementById('modalVisita').style.display = 'block';
+            // Establecer fecha actual por defecto
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaVisita').value = today;
+            calcularTotalVisita();
+            // Limpiar formulario
+            document.getElementById('formVisita').reset();
+            document.getElementById('fechaVisita').value = today;
+            document.getElementById('cantidadVisitas').value = 1;
+            document.getElementById('costoVisita').value = '$' + COSTO_VISITA.toLocaleString('es-AR');
+            calcularTotalVisita();
+            document.getElementById('resumenVisitasMes').style.display = 'none';
+            // Habilitar campo de socio
+            document.getElementById('socioVisita').disabled = false;
+            document.getElementById('socioVisita').placeholder = 'Buscar socio por nombre o DNI...';
+        }
+
+        function cargarVisitaSocio(id, nombre, dni) {
+            // Abrir modal
+            document.getElementById('modalVisita').style.display = 'block';
+            
+            // Pre-cargar el socio y bloquearlo
+            document.getElementById('socioVisita').value = nombre;
+            document.getElementById('socioVisitaId').value = id;
+            document.getElementById('socioVisita').disabled = true;
+            document.getElementById('socioVisita').style.background = '#f8f9fa';
+            document.getElementById('socioVisita').style.cursor = 'not-allowed';
+            
+            // Establecer fecha actual
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaVisita').value = today;
+            document.getElementById('cantidadVisitas').value = 1;
+            document.getElementById('costoVisita').value = '$' + COSTO_VISITA.toLocaleString('es-AR');
+            document.getElementById('observacionesVisita').value = '';
+            calcularTotalVisita();
+            
+            // Mostrar resumen del mes
+            actualizarResumenVisitasMes();
+        }
+
+        function openModalVisitaDesdeDetalle() {
+            // Obtener el socio del modal de detalle
+            const socioNombre = document.getElementById('socioNombreDetalle').textContent;
+            const socioInput = document.getElementById('socioVisita');
+            const socioIdInput = document.getElementById('socioVisitaId');
+            
+            // Buscar el socio en la lista
+            const socio = sociosEjemplo.find(s => s.nombre === socioNombre);
+            if (socio) {
+                socioInput.value = socio.nombre;
+                socioIdInput.value = socio.id;
+            } else {
+                socioInput.value = socioNombre;
+            }
+            
+            openModalVisita();
+            actualizarResumenVisitasMes();
+        }
+
+        function closeModalVisita() {
+            document.getElementById('modalVisita').style.display = 'none';
+            document.getElementById('formVisita').reset();
+            document.getElementById('formVisita').removeAttribute('data-editing-id');
+            document.getElementById('socioVisitaList').style.display = 'none';
+            document.getElementById('resumenVisitasMes').style.display = 'none';
+            // Restablecer valores por defecto
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('fechaVisita').value = today;
+            document.getElementById('cantidadVisitas').value = 1;
+            document.getElementById('costoVisita').value = '$' + COSTO_VISITA.toLocaleString('es-AR');
+            calcularTotalVisita();
+            // Habilitar campo de socio
+            document.getElementById('socioVisita').disabled = false;
+            document.getElementById('socioVisita').style.background = '';
+            document.getElementById('socioVisita').style.cursor = '';
+        }
+
+        function calcularTotalVisita() {
+            const cantidad = parseInt(document.getElementById('cantidadVisitas').value) || 0;
+            const total = cantidad * COSTO_VISITA;
+            document.getElementById('totalVisita').value = '$' + total.toLocaleString('es-AR');
+        }
+
+        // Búsqueda de socios
+        document.getElementById('socioVisita').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const list = document.getElementById('socioVisitaList');
+            const socioIdInput = document.getElementById('socioVisitaId');
+            
+            if (searchTerm.length < 2) {
+                list.style.display = 'none';
+                socioIdInput.value = '';
+                document.getElementById('resumenVisitasMes').style.display = 'none';
+                return;
+            }
+
+            const filtered = sociosEjemplo.filter(s => 
+                s.nombre.toLowerCase().includes(searchTerm) || 
+                s.dni.includes(searchTerm)
+            );
+
+            if (filtered.length > 0) {
+                list.innerHTML = filtered.map(s => 
+                    `<div style="padding: 0.75rem; cursor: pointer; border-bottom: 1px solid #eee;" 
+                          onmouseover="this.style.background='#f8f9fa'" 
+                          onmouseout="this.style.background='white'"
+                          onclick="seleccionarSocio(${s.id}, '${s.nombre}')">
+                        <strong>${s.nombre}</strong><br>
+                        <small style="color: #6c757d;">DNI: ${s.dni}</small>
+                    </div>`
+                ).join('');
+                list.style.display = 'block';
+            } else {
+                list.style.display = 'none';
+            }
+        });
+
+        function seleccionarSocio(id, nombre) {
+            document.getElementById('socioVisita').value = nombre;
+            document.getElementById('socioVisitaId').value = id;
+            document.getElementById('socioVisitaList').style.display = 'none';
+            actualizarResumenVisitasMes();
+        }
+
+        function actualizarResumenVisitasMes() {
+            const socioId = document.getElementById('socioVisitaId').value;
+            const fechaInput = document.getElementById('fechaVisita').value;
+            
+            if (!socioId || !fechaInput) {
+                document.getElementById('resumenVisitasMes').style.display = 'none';
+                return;
+            }
+
+            const fecha = new Date(fechaInput);
+            const mes = fecha.getMonth() + 1;
+            const año = fecha.getFullYear();
+
+            // Filtrar visitas del socio en el mes seleccionado
+            const visitasMes = visitasEjemplo.filter(v => {
+                const vFecha = new Date(v.fecha);
+                return v.socioId == socioId && 
+                       vFecha.getMonth() + 1 === mes && 
+                       vFecha.getFullYear() === año;
+            });
+
+            if (visitasMes.length > 0) {
+                const totalVisitas = visitasMes.reduce((sum, v) => sum + v.cantidad, 0);
+                const totalMonto = visitasMes.reduce((sum, v) => sum + v.monto, 0);
+                const pendientes = visitasMes.filter(v => v.estado === 'pendiente').length;
+                const conCupon = visitasMes.filter(v => v.estado === 'con_cupon').length;
+
+                document.getElementById('resumenVisitasMesContent').innerHTML = `
+                    <div>Total de visitas este mes: <strong>${totalVisitas}</strong></div>
+                    <div>Total acumulado: <strong>$${totalMonto.toLocaleString('es-AR')}</strong></div>
+                    <div>Pendientes: ${pendientes} | Con cupón: ${conCupon}</div>
+                `;
+                document.getElementById('resumenVisitasMes').style.display = 'block';
+            } else {
+                document.getElementById('resumenVisitasMes').style.display = 'none';
+            }
+        }
+
+        // Actualizar resumen cuando cambia la fecha
+        document.getElementById('fechaVisita').addEventListener('change', actualizarResumenVisitasMes);
+
+        function guardarVisita(event) {
+            event.preventDefault();
+            
+            const editingId = document.getElementById('formVisita').getAttribute('data-editing-id');
+            
+            if (editingId) {
+                // Modo edición
+                const visita = visitasEjemplo.find(v => v.id == editingId);
+                if (visita && visita.estado === 'pendiente') {
+                    const socioId = document.getElementById('socioVisitaId').value;
+                    const socioNombre = document.getElementById('socioVisita').value;
+                    const fecha = document.getElementById('fechaVisita').value;
+                    const cantidad = parseInt(document.getElementById('cantidadVisitas').value);
+                    const observaciones = document.getElementById('observacionesVisita').value;
+                    const monto = cantidad * COSTO_VISITA;
+
+                    visita.socioId = parseInt(socioId);
+                    visita.socioNombre = socioNombre;
+                    visita.fecha = fecha;
+                    visita.cantidad = cantidad;
+                    visita.monto = monto;
+                    visita.observaciones = observaciones;
+
+                    alert('Visita actualizada exitosamente.');
+                    closeModalVisita();
+                    document.getElementById('formVisita').removeAttribute('data-editing-id');
+                    filtrarVisitas();
+                    return;
+                }
+            }
+            
+            // Modo creación
+            const socioId = document.getElementById('socioVisitaId').value;
+            const socioNombre = document.getElementById('socioVisita').value;
+            const fecha = document.getElementById('fechaVisita').value;
+            const cantidad = parseInt(document.getElementById('cantidadVisitas').value);
+            const observaciones = document.getElementById('observacionesVisita').value;
+            const monto = cantidad * COSTO_VISITA;
+
+            if (!socioId) {
+                alert('Por favor seleccione un socio de la lista');
+                return;
+            }
+
+            // Crear nueva visita
+            const nuevaVisita = {
+                id: visitasEjemplo.length + 1,
+                socioId: parseInt(socioId),
+                socioNombre: socioNombre,
+                fecha: fecha,
+                cantidad: cantidad,
+                monto: monto,
+                estado: 'pendiente',
+                observaciones: observaciones
+            };
+
+            visitasEjemplo.push(nuevaVisita);
+
+            alert('Visita cargada exitosamente. Se generará un cupón cuando se procese la facturación mensual.');
+            closeModalVisita();
+            
+            // Si el modal de detalle está abierto, actualizar la vista
+            if (document.getElementById('modalDetalle').style.display === 'block') {
+                // Aquí se podría recargar los movimientos del socio
+            }
+            
+            // Actualizar tabla de visitas si está visible
+            if (document.getElementById('contenidoVisitas').style.display !== 'none') {
+                filtrarVisitas();
+            }
+        }
+
+        // Funciones para tabs
+        function mostrarTab(tab) {
+            if (tab === 'socios') {
+                document.getElementById('contenidoSocios').style.display = 'block';
+                document.getElementById('contenidoVisitas').style.display = 'none';
+                document.getElementById('tabSocios').classList.add('active');
+                document.getElementById('tabSocios').style.borderBottom = '3px solid #3498db';
+                document.getElementById('tabSocios').style.color = '#3498db';
+                document.getElementById('tabSocios').style.fontWeight = 'bold';
+                document.getElementById('tabVisitas').classList.remove('active');
+                document.getElementById('tabVisitas').style.borderBottom = '3px solid transparent';
+                document.getElementById('tabVisitas').style.color = '#6c757d';
+                document.getElementById('tabVisitas').style.fontWeight = 'normal';
+            } else {
+                document.getElementById('contenidoSocios').style.display = 'none';
+                document.getElementById('contenidoVisitas').style.display = 'block';
+                document.getElementById('tabVisitas').classList.add('active');
+                document.getElementById('tabVisitas').style.borderBottom = '3px solid #3498db';
+                document.getElementById('tabVisitas').style.color = '#3498db';
+                document.getElementById('tabVisitas').style.fontWeight = 'bold';
+                document.getElementById('tabSocios').classList.remove('active');
+                document.getElementById('tabSocios').style.borderBottom = '3px solid transparent';
+                document.getElementById('tabSocios').style.color = '#6c757d';
+                document.getElementById('tabSocios').style.fontWeight = 'normal';
+                filtrarVisitas(); // Cargar visitas al mostrar la tab
+            }
+        }
+
+        // Función para filtrar y mostrar visitas
+        function filtrarVisitas() {
+            const filtroSocio = document.getElementById('filtroSocioVisita').value.toLowerCase();
+            const filtroMes = document.getElementById('filtroMesVisita').value;
+            const filtroEstado = document.getElementById('filtroEstadoVisita').value;
+
+            let visitasFiltradas = visitasEjemplo.filter(v => {
+                // Filtro por socio
+                const matchSocio = !filtroSocio || 
+                    v.socioNombre.toLowerCase().includes(filtroSocio);
+                
+                // Filtro por mes
+                const matchMes = !filtroMes || 
+                    new Date(v.fecha).getMonth() + 1 == filtroMes;
+                
+                // Filtro por estado
+                const matchEstado = !filtroEstado || v.estado === filtroEstado;
+
+                return matchSocio && matchMes && matchEstado;
+            });
+
+            renderizarTablaVisitas(visitasFiltradas);
+        }
+
+        // Función para renderizar la tabla de visitas
+        function renderizarTablaVisitas(visitas) {
+            const tbody = document.getElementById('tablaVisitasBody');
+            
+            if (visitas.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 2rem; color: #6c757d;">No se encontraron visitas</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = visitas.map(v => {
+                const fecha = new Date(v.fecha).toLocaleDateString('es-AR');
+                const fechaCupon = v.fechaCupon ? new Date(v.fechaCupon).toLocaleDateString('es-AR') : '-';
+                const estadoBadge = v.estado === 'pendiente' 
+                    ? '<span class="status-badge status-pending">Pendiente</span>'
+                    : '<span class="status-badge status-active">Con cupón</span>';
+                
+                const acciones = v.estado === 'pendiente'
+                    ? `<div class="action-buttons">
+                            <button class="btn btn-sm" style="background: #17a2b8;" onclick="editarVisita(${v.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarVisita(${v.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>`
+                    : '<span style="color: #6c757d; font-size: 0.85rem;">No disponible</span>';
+
+                return `
+                    <tr>
+                        <td>${v.socioNombre}</td>
+                        <td>${fecha}</td>
+                        <td>${v.cantidad}</td>
+                        <td class="amount">$${v.monto.toLocaleString('es-AR')}</td>
+                        <td>${estadoBadge}</td>
+                        <td>${fechaCupon}</td>
+                        <td>${v.observaciones || '-'}</td>
+                        <td>${acciones}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Función para editar visita
+        function editarVisita(id) {
+            const visita = visitasEjemplo.find(v => v.id === id);
+            if (!visita || visita.estado !== 'pendiente') {
+                alert('No se puede editar esta visita porque ya tiene un cupón generado.');
+                return;
+            }
+
+            // Prellenar el formulario
+            document.getElementById('socioVisita').value = visita.socioNombre;
+            document.getElementById('socioVisitaId').value = visita.socioId;
+            document.getElementById('fechaVisita').value = visita.fecha;
+            document.getElementById('cantidadVisitas').value = visita.cantidad;
+            document.getElementById('observacionesVisita').value = visita.observaciones || '';
+            calcularTotalVisita();
+            actualizarResumenVisitasMes();
+
+            // Guardar el ID de la visita que se está editando
+            document.getElementById('formVisita').setAttribute('data-editing-id', id);
+
+            openModalVisita();
+        }
+
+        // Función para eliminar visita
+        function eliminarVisita(id) {
+            const visita = visitasEjemplo.find(v => v.id === id);
+            if (!visita || visita.estado !== 'pendiente') {
+                alert('No se puede eliminar esta visita porque ya tiene un cupón generado.');
+                return;
+            }
+
+            if (confirm(`¿Está seguro que desea eliminar la visita del ${new Date(visita.fecha).toLocaleDateString('es-AR')} de ${visita.socioNombre}?`)) {
+                visitasEjemplo = visitasEjemplo.filter(v => v.id !== id);
+                filtrarVisitas();
+                alert('Visita eliminada exitosamente.');
+            }
+        }
+
     </script>
 </body>
 </html>
